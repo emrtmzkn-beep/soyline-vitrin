@@ -85,16 +85,18 @@ export default function Home() {
             height: 100vh; width: 100%; position: relative; overflow: hidden;
             display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
             padding-bottom: 80px;
+            background-color: #000; /* Video kenarları siyah olsun */
         }
 
         .hero-video {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; z-index: 0; opacity: 0.7; mix-blend-mode: screen; 
+            object-fit: cover; /* Masaüstünde tam kapla */
+            z-index: 0; opacity: 0.8; mix-blend-mode: screen; 
         }
 
         .hero-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, rgba(30, 41, 59, 0.4) 0%, #020617 100%);
+            background: radial-gradient(circle at center, rgba(30, 41, 59, 0.2) 0%, #020617 100%);
             z-index: 1;
         }
 
@@ -110,7 +112,6 @@ export default function Home() {
         }
         .cs-text {
             font-family: 'Inter', sans-serif; font-weight: 900; 
-            /* Mobilde taşmayı önlemek için responsive font boyutu */
             font-size: clamp(2.5rem, 10vw, 5rem); 
             letter-spacing: clamp(2px, 1vw, 10px);
             line-height: 1;
@@ -128,7 +129,7 @@ export default function Home() {
             padding: 80px 20px; text-align: center; background: #020617; position: relative; z-index: 5;
         }
         .intro-title {
-            font-size: clamp(2rem, 5vw, 3.5rem); /* Mobilde küçülen başlık */
+            font-size: clamp(2rem, 5vw, 3.5rem);
             line-height: 1.2; margin-bottom: 20px; font-weight: 800; letter-spacing: -1px;
             font-family: serif;
         }
@@ -171,29 +172,33 @@ export default function Home() {
 
         /* --- MOBİL UYUMLULUK (MEDIA QUERIES) --- */
         @media (max-width: 900px) {
-            .logo-soy, .logo-line { font-size: 2rem; } /* Logo küçültme */
-            
+            .logo-soy, .logo-line { font-size: 2rem; }
+
+            /* !!! VİDEO DÜZELTMESİ !!! */
+            .hero-video {
+                object-fit: contain !important; /* Videoyu kesme, ekrana sığdır */
+                top: 0 !important;
+                height: 80% !important; /* Yazı için altta yer bırak */
+            }
+
+            /* Yazıları biraz daha yukarı al ki video ile karışmasın */
+            .hero {
+                justify-content: flex-end;
+                padding-bottom: 120px;
+            }
+
             .slider-container { 
-                grid-template-columns: 1fr; /* Tek sütuna düşür */
+                grid-template-columns: 1fr;
                 text-align: center; 
                 gap: 30px;
             }
-            
-            /* Mobilde görseli üste al */
             .visual-side { 
                 order: -1; 
-                height: 280px; /* Görsel alanını küçült */
+                height: 280px; 
                 margin-bottom: 20px;
             }
-            
-            /* Arka plan noktalarını gizle (performans ve yer için) */
             .dots-grid { display: none; }
-            
             .text-side { padding: 0 10px; }
-            
-            .slider-title { font-size: 2rem !important; } /* Başlık boyutu */
-            
-            /* Navigasyon butonlarını ortala */
             .nav-wrapper { justify-content: center !important; margin-top: 30px !important; }
         }
       `}</style>
@@ -253,7 +258,6 @@ export default function Home() {
       <section className="feature-section">
         <div className="slider-container">
             
-            {/* SOL TARAF: METİN (Mobilde altta) */}
             <div className="text-side" style={{position:'relative', zIndex:2}}>
                 <div style={{marginBottom:'20px', fontSize:'0.9rem', color: features[activeTab].color, fontWeight:'bold', letterSpacing:'2px', display:'flex', alignItems:'center', justifyContent: 'center', gap:'10px'}}>
                     <span style={{width:'30px', height:'2px', background: features[activeTab].color}}></span>
@@ -277,7 +281,6 @@ export default function Home() {
                     </motion.div>
                 </AnimatePresence>
 
-                {/* Navigasyon */}
                 <div className="nav-wrapper" style={{ display: 'flex', gap: '15px', marginTop: '60px', alignItems:'center' }}>
                     <button className="nav-btn" onClick={() => setActiveTab((prev) => (prev === 0 ? features.length - 1 : prev - 1))}>
                         <TbChevronLeft size={24} />
@@ -304,7 +307,6 @@ export default function Home() {
                 </div>
             </div>
 
-            {/* SAĞ TARAF: GÖRSEL (Mobilde üstte) */}
             <div className="visual-side">
                 <AnimatePresence mode='wait'>
                     <motion.div
@@ -327,7 +329,6 @@ export default function Home() {
                                 <div key={i} className="dot" style={{backgroundColor: features[activeTab].color}}></div>
                             ))}
                         </div>
-                        {/* İkon boyutu mobilde de düzgün görünsün diye rem yerine responsive ayar */}
                         <div style={{ fontSize: 'min(10rem, 30vw)', color: features[activeTab].color, zIndex:1, filter: `drop-shadow(0 0 40px ${features[activeTab].color}60)` }}>
                             {features[activeTab].icon}
                         </div>
