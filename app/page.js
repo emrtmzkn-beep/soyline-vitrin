@@ -91,7 +91,7 @@ export default function Home() {
         .hero-video {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             object-fit: cover; /* Masaüstünde tam kapla */
-            z-index: 0; opacity: 0.8; mix-blend-mode: screen; 
+            z-index: 0; opacity: 1.0; 
         }
 
         .hero-overlay {
@@ -218,7 +218,7 @@ export default function Home() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1.5, ease: "easeOut" }}
              >
-                <div className="cs-sub">DİJİTAL ATÇILIK DEVRİMİ</div>
+                
                 <div className="cs-text">ÇOK YAKINDA</div>
              </motion.div>
              
@@ -244,10 +244,7 @@ export default function Home() {
                 Geleceğin Şampiyonunu<br />
                 <span style={{ color: '#d4af37', fontStyle:'italic' }}>Bugünden Keşfet</span>
             </h1>
-            <p className="intro-desc">
-             Veri odaklı ve fiziksel eşleşme analizi, profesyonel Aygır yönetimi ,
-             Elit atlardan oluşan Pazaryeri tek platformda. Atçılıkta şansa yer bırakmayın.
-            </p>
+            
         </motion.div>
       </section>
 
