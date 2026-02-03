@@ -12,10 +12,10 @@ const features = [
     id: 0,
     label: "YÖNETİM",
     title: "Hipodrom & Hara Yönetimi",
-    desc: "SoyLine BarnOS ile haranızı ve ekürinizi cebinizden yönetin. Aşı takvimi, nalbant randevuları, personel maaşları, idman kayıtları ve gelir-gider finans takibi tek ekranda.",
+    desc: "SoyLine™ ile haranızı ve ekürinizi cebinizden yönetin. Aşı takvimi, nalbant randevuları, personel maaşları, idman kayıtları ve gelir-gider finans takibi tek ekranda.",
     icon: <TbHome />,
     bgPattern: "radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%)",
-    color: "#3b82f6", // Mavi
+    color: "#3b82f6", 
   },
   {
     id: 1,
@@ -24,34 +24,34 @@ const features = [
     desc: "Aygırınızın aşım performansını, rezervasyonlarını ve taylarının saha başarılarını takip edin. Aşım sertifikaları ve veteriner kontrollerini dijitalleştirin.",
     icon: <TbHorse />,
     bgPattern: "radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%)",
-    color: "#d4af37", // Altın
+    color: "#d4af37", 
   },
   {
     id: 2,
     label: "GENETİK",
-    title: "SoyLine AI™ Eşleşme Analizi",
+    title: "SaFLine AI™ Eşleşme Analizi",
     desc: "9 nesil geriye dönük Impact Analysis, Dosage profili ve Chef-de-Race verilerini yapay zeka ile birleştirerek kısrağınız için şampiyon genetiğini tespit edin.",
     icon: <TbDna />,
     bgPattern: "radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%)",
-    color: "#10b981", // Yeşil
+    color: "#10b981", 
   },
   {
     id: 3,
     label: "BİYOMEKANİK",
-    title: "SoyLine AI™ Konformasyon Analizi",
+    title: "Yapay Zeka Konformasyon Analizi",
     desc: "Tayınızın fotoğrafını yükleyin, yapay zeka vücut açılarını, omuz eğimini ve sağrı yapısını analiz etsin. Sakatlık riski ve mesafe yatkınlığı raporunu alın.",
     icon: <TbCamera />,
     bgPattern: "radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%)",
-    color: "#8b5cf6", // Mor
+    color: "#8b5cf6", 
   },
   {
     id: 4,
     label: "FİZİKSEL",
-    title: "SoyLine AI™ Fenotip Analizi",
+    title: "Fenotip & Eşkal Analizi",
     desc: "Sadece kağıt üzerindeki soya değil, fiziksel uyuma da bakın. Aygır ve kısrağın fiziksel özelliklerinin (renk, eşkal, vücut tipi) yavruya aktarım olasılıklarını hesaplayın.",
     icon: <TbEye />,
     bgPattern: "radial-gradient(circle, rgba(236, 72, 153, 0.15) 0%, transparent 70%)",
-    color: "#ec4899", // Pembe
+    color: "#ec4899", 
   },
   {
     id: 5,
@@ -60,14 +60,13 @@ const features = [
     desc: "Türkiye'nin en seçkin tayları, damızlık kısrakları ve aygır payları burada el değiştiriyor. Video destekli, veteriner raporlu ve pedigri onaylı güvenli ticaret.",
     icon: <TbShoppingBag />,
     bgPattern: "radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, transparent 70%)",
-    color: "#f97316", // Turuncu
+    color: "#f97316", 
   }
 ];
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState(0);
 
-  // Otomatik geçiş
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveTab((prev) => (prev + 1) % features.length);
@@ -81,62 +80,66 @@ export default function Home() {
         :root { --bg-dark: #020617; --text-main: #fff; }
         body { background: var(--bg-dark); color: var(--text-main); margin:0; font-family: 'Inter', sans-serif; overflow-x: hidden; }
         
-        /* HERO (VİDEO ALANI) */
+        /* --- HERO (VİDEO ALANI) --- */
         .hero { 
             height: 100vh; width: 100%; position: relative; overflow: hidden;
             display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
-            padding-bottom: 40px; /* Yazıyı en alta yaklaştırdık */
+            padding-bottom: 80px;
         }
 
         .hero-video {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; z-index: 0;
-            opacity: 1; /* Videoyu tamamen net yaptık */
+            object-fit: cover; z-index: 0; opacity: 0.7; mix-blend-mode: screen; 
         }
 
-        /* LOGO (Üst Ortada Sabit) */
+        .hero-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, rgba(30, 41, 59, 0.4) 0%, #020617 100%);
+            z-index: 1;
+        }
+
         .logo-container {
             position: absolute; top: 40px; left: 50%; transform: translateX(-50%); z-index: 10;
-            display: flex; gap: 5px;
+            display: flex; gap: 5px; width: 100%; justify-content: center;
         }
-        .logo-soy { font-family: serif; font-size: 2.5rem; color: #fff; font-weight: 400; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-        .logo-line { font-family: sans-serif; font-size: 2.5rem; color: #d4af37; font-weight: 700; font-style: italic; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .logo-soy { font-family: serif; font-size: 2.5rem; color: #fff; font-weight: 400; }
+        .logo-line { font-family: sans-serif; font-size: 2.5rem; color: #d4af37; font-weight: 700; font-style: italic; }
 
         .coming-soon {
-            position: relative; z-index: 10; text-align: center;
-            margin-bottom: 0px; /* Alttaki boşluğu sıfırladık */
+            position: relative; z-index: 10; text-align: center; width: 90%;
         }
-        
         .cs-text {
-            font-family: 'Inter', sans-serif; font-weight: 900; font-size: 5rem; 
-            letter-spacing: 5px; line-height: 1;
-            /* Yazı daha net okunsun diye hafif gölge ve parlaklık */
-            color: #fff;
-            text-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            font-family: 'Inter', sans-serif; font-weight: 900; 
+            /* Mobilde taşmayı önlemek için responsive font boyutu */
+            font-size: clamp(2.5rem, 10vw, 5rem); 
+            letter-spacing: clamp(2px, 1vw, 10px);
+            line-height: 1;
+            background: linear-gradient(to bottom, #fff 0%, #94a3b8 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-        
         .cs-sub {
-            color: #d4af37; letter-spacing: 4px; font-size: 1.2rem; font-weight: bold; margin-bottom: 5px;
+            color: #d4af37; letter-spacing: 3px; font-size: 1rem; font-weight: bold; margin-top: 10px;
             text-transform: uppercase;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
         }
 
-        /* INTRO SECTION (YAZI ALANI) */
+        /* --- INTRO SECTION (YAZI ALANI) --- */
         .intro-section {
-            padding: 100px 20px; text-align: center; background: #020a2c; position: relative; z-index: 5;
+            padding: 80px 20px; text-align: center; background: #020617; position: relative; z-index: 5;
         }
         .intro-title {
-            font-size: 3.5rem; line-height: 1.2; margin-bottom: 20px; font-weight: 800; letter-spacing: -1px;
+            font-size: clamp(2rem, 5vw, 3.5rem); /* Mobilde küçülen başlık */
+            line-height: 1.2; margin-bottom: 20px; font-weight: 800; letter-spacing: -1px;
             font-family: serif;
         }
         .intro-desc {
-            font-size: 1.2rem; color: #cbd5e1; max-width: 700px; margin: 0 auto; line-height: 1.6;
+            font-size: 1.1rem; color: #cbd5e1; max-width: 700px; margin: 0 auto; line-height: 1.6;
         }
 
-        /* FEATURE SLIDER SECTION */
+        /* --- SLIDER SECTION --- */
         .feature-section {
             padding: 50px 20px 100px 20px;
-            background: #020a2c;
+            background: #0f172a;
             position: relative; overflow: hidden;
             border-top: 1px solid #1e293b;
         }
@@ -145,6 +148,11 @@ export default function Home() {
             max-width: 1200px; margin: 0 auto;
             display: grid; grid-template-columns: 1fr 1fr; gap: 50px;
             align-items: center; min-height: 500px;
+        }
+
+        .visual-side {
+            display: flex; justify-content: center; align-items: center; 
+            position: relative; height: 400px;
         }
 
         .dots-grid {
@@ -161,49 +169,68 @@ export default function Home() {
         }
         .nav-btn:hover { border-color: #d4af37; color: #d4af37; background: rgba(212,175,55,0.1); }
 
+        /* --- MOBİL UYUMLULUK (MEDIA QUERIES) --- */
         @media (max-width: 900px) {
-            .cs-text { font-size: 3rem; letter-spacing: 2px; }
-            .intro-title { font-size: 2.2rem; }
-            .slider-container { grid-template-columns: 1fr; text-align: center; }
-            .visual-side { order: -1; margin-bottom: 30px; }
+            .logo-soy, .logo-line { font-size: 2rem; } /* Logo küçültme */
+            
+            .slider-container { 
+                grid-template-columns: 1fr; /* Tek sütuna düşür */
+                text-align: center; 
+                gap: 30px;
+            }
+            
+            /* Mobilde görseli üste al */
+            .visual-side { 
+                order: -1; 
+                height: 280px; /* Görsel alanını küçült */
+                margin-bottom: 20px;
+            }
+            
+            /* Arka plan noktalarını gizle (performans ve yer için) */
             .dots-grid { display: none; }
-            .text-side { padding: 0 20px; }
+            
+            .text-side { padding: 0 10px; }
+            
+            .slider-title { font-size: 2rem !important; } /* Başlık boyutu */
+            
+            /* Navigasyon butonlarını ortala */
+            .nav-wrapper { justify-content: center !important; margin-top: 30px !important; }
         }
       `}</style>
 
-      {/* --- HERO SECTION --- */}
+      {/* HERO SECTION */}
       <header className="hero">
-        
-        {/* VİDEO (Filtresiz, Net) */}
+        <div className="hero-overlay"></div>
         <video className="hero-video" autoPlay loop muted playsInline>
             <source src="/horse.mp4" type="video/mp4" />
         </video>
 
-        
-        {/* ÇOK YAKINDA YAZISI (En altta, Okun hemen üstünde) */}
+        <div className="logo-container">
+            <span className="logo-soy">Soy</span>
+            <span className="logo-line">Line</span>
+        </div>
+
         <div className="coming-soon">
              <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1.5, ease: "easeOut" }}
              >
-                
+                <div className="cs-sub">DİJİTAL ATÇILIK DEVRİMİ</div>
                 <div className="cs-text">ÇOK YAKINDA</div>
              </motion.div>
              
-             {/* Aşağı Kaydır İkonu */}
              <motion.div 
                 animate={{ y: [0, 10, 0] }} 
                 transition={{ repeat: Infinity, duration: 2 }}
-                style={{ marginTop: '10px', color: '#d4af37', fontSize: '2rem' }}
+                style={{ marginTop: '30px', color: '#d4af37', fontSize: '2rem' }}
              >
                 ↓
              </motion.div>
         </div>
       </header>
 
-
-      {/* --- INTRO SECTION (Geleceğin Şampiyonu Buraya Geldi) --- */}
+      {/* INTRO SECTION */}
       <section className="intro-section">
         <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -215,18 +242,20 @@ export default function Home() {
                 Geleceğin Şampiyonunu<br />
                 <span style={{ color: '#d4af37', fontStyle:'italic' }}>Bugünden Keşfet</span>
             </h1>
-            
+            <p className="intro-desc">
+                Veri odaklı eşleşme analizi, profesyonel aygır yönetimi ve finansal
+                kontrol tek platformda. Atçılıkta şansa yer bırakmayın.
+            </p>
         </motion.div>
       </section>
 
-
-      {/* --- SLIDER BÖLÜMÜ --- */}
+      {/* SLIDER SECTION */}
       <section className="feature-section">
         <div className="slider-container">
             
-            {/* SOL TARAF: METİN */}
+            {/* SOL TARAF: METİN (Mobilde altta) */}
             <div className="text-side" style={{position:'relative', zIndex:2}}>
-                <div style={{marginBottom:'20px', fontSize:'0.9rem', color: features[activeTab].color, fontWeight:'bold', letterSpacing:'2px', display:'flex', alignItems:'center', gap:'10px'}}>
+                <div style={{marginBottom:'20px', fontSize:'0.9rem', color: features[activeTab].color, fontWeight:'bold', letterSpacing:'2px', display:'flex', alignItems:'center', justifyContent: 'center', gap:'10px'}}>
                     <span style={{width:'30px', height:'2px', background: features[activeTab].color}}></span>
                     MODÜL {activeTab + 1} / {features.length}
                 </div>
@@ -239,17 +268,17 @@ export default function Home() {
                         exit={{ opacity: 0, x: 20 }}
                         transition={{ duration: 0.4 }}
                     >
-                        <h2 style={{ fontFamily: "serif", fontSize: '3rem', margin: '0 0 20px 0', lineHeight: 1.1, color:'#fff' }}>
+                        <h2 className="slider-title" style={{ fontFamily: "serif", fontSize: '3rem', margin: '0 0 20px 0', lineHeight: 1.1, color:'#fff' }}>
                             {features[activeTab].title}
                         </h2>
-                        <p style={{ fontSize: '1.1rem', color: '#94a3b8', lineHeight: 1.8, marginBottom: '40px', maxWidth:'500px' }}>
+                        <p style={{ fontSize: '1.1rem', color: '#94a3b8', lineHeight: 1.8, marginBottom: '40px', maxWidth:'500px', marginInline: 'auto' }}>
                             {features[activeTab].desc}
                         </p>
                     </motion.div>
                 </AnimatePresence>
 
                 {/* Navigasyon */}
-                <div style={{ display: 'flex', gap: '15px', marginTop: '60px', alignItems:'center' }}>
+                <div className="nav-wrapper" style={{ display: 'flex', gap: '15px', marginTop: '60px', alignItems:'center' }}>
                     <button className="nav-btn" onClick={() => setActiveTab((prev) => (prev === 0 ? features.length - 1 : prev - 1))}>
                         <TbChevronLeft size={24} />
                     </button>
@@ -275,8 +304,8 @@ export default function Home() {
                 </div>
             </div>
 
-            {/* SAĞ TARAF: GÖRSEL / GRAFİK */}
-            <div className="visual-side" style={{ display:'flex', justifyContent:'center', alignItems:'center', position:'relative', height:'400px' }}>
+            {/* SAĞ TARAF: GÖRSEL (Mobilde üstte) */}
+            <div className="visual-side">
                 <AnimatePresence mode='wait'>
                     <motion.div
                         key={activeTab}
@@ -298,7 +327,8 @@ export default function Home() {
                                 <div key={i} className="dot" style={{backgroundColor: features[activeTab].color}}></div>
                             ))}
                         </div>
-                        <div style={{ fontSize: '10rem', color: features[activeTab].color, zIndex:1, filter: `drop-shadow(0 0 40px ${features[activeTab].color}60)` }}>
+                        {/* İkon boyutu mobilde de düzgün görünsün diye rem yerine responsive ayar */}
+                        <div style={{ fontSize: 'min(10rem, 30vw)', color: features[activeTab].color, zIndex:1, filter: `drop-shadow(0 0 40px ${features[activeTab].color}60)` }}>
                             {features[activeTab].icon}
                         </div>
                     </motion.div>
@@ -308,8 +338,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer style={{textAlign:'center', padding:'40px', borderTop:'1px solid #1e293b', color:'#64748b', fontSize:'0.8rem', background:'#020a2c'}}>
+      <footer style={{textAlign:'center', padding:'40px', borderTop:'1px solid #1e293b', color:'#64748b', fontSize:'0.8rem', background:'#020617'}}>
         <div style={{ marginBottom: '10px', fontSize:'1.5rem', fontFamily:'serif', color:'#fff' }}>
           Soy<span style={{color:'#d4af37', fontFamily:'sans-serif', fontWeight:'bold', fontStyle:'italic'}}>Line</span>
         </div>
