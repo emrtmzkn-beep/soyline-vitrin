@@ -210,12 +210,9 @@ export default function Home() {
             <source src="/horse.mp4" type="video/mp4" />
         </video>
 
-        <div className="logo-container">
-            <span className="logo-soy">Soy</span>
-            <span className="logo-line">Line</span>
-        </div>
+       
 
-        <div className="coming-soon">
+         <div className="coming-soon">
              <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -248,8 +245,8 @@ export default function Home() {
                 <span style={{ color: '#d4af37', fontStyle:'italic' }}>Bugünden Keşfet</span>
             </h1>
             <p className="intro-desc">
-                Veri odaklı eşleşme analizi, profesyonel aygır yönetimi ve finansal
-                kontrol tek platformda. Atçılıkta şansa yer bırakmayın.
+             Veri odaklı ve fiziksel eşleşme analizi, profesyonel Aygır yönetimi ,
+             Elit atlardan oluşan Pazaryeri tek platformda. Atçılıkta şansa yer bırakmayın.
             </p>
         </motion.div>
       </section>
