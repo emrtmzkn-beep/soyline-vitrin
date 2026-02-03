@@ -88,15 +88,21 @@ export default function Home() {
             background-color: #000; /* Video kenarları siyah olsun */
         }
 
+        /* VİDEO AYARI - KESİN ÇÖZÜM */
         .hero-video {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    object-fit: contain !important; /* Mobilde sığdırma ayarı */
-    z-index: 0; 
-    opacity: 1; /* TAM GÖRÜNÜRLÜK */
-    /* mix-blend-mode satırı silindi */
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: contain !important; 
+            z-index: 0; 
+            opacity: 1 !important; /* !important ile kesinlik kazandırdık */
+            mix-blend-mode: normal !important; /* Karıştırma modunu iptal et */
+            filter: none !important; /* Varsa filtreleri kaldır */
 }
+
+        /* KARARTMA PERDESİ - KESİN GİZLEME */
         .hero-overlay {
-    display: none; /* KARARTMA KATMANINI GİZLE */
+            display: none !important; /* Kesinlikle gösterme */
+            opacity: 0 !important;
+            visibility: hidden !important;
 }
 
         .logo-container {
