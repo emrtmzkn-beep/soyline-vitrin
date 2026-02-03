@@ -89,16 +89,15 @@ export default function Home() {
         }
 
         .hero-video {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; /* Masaüstünde tam kapla */
-            z-index: 0; opacity: 1.0; 
-        }
-
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: contain !important; /* Mobilde sığdırma ayarı */
+    z-index: 0; 
+    opacity: 1; /* TAM GÖRÜNÜRLÜK */
+    /* mix-blend-mode satırı silindi */
+}
         .hero-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, rgba(30, 41, 59, 0.2) 0%, #020617 100%);
-            z-index: 1;
-        }
+    display: none; /* KARARTMA KATMANINI GİZLE */
+}
 
         .logo-container {
             position: absolute; top: 40px; left: 50%; transform: translateX(-50%); z-index: 10;
