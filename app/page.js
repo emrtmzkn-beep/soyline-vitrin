@@ -11,17 +11,17 @@ const features = [
   {
     id: 0,
     label: "YÖNETİM",
-    title: "Hipodrom & Hara Yönetimi",
-    desc: "SoyLine™ ile haranızı ve ekürinizi cebinizden yönetin. Aşı takvimi, nalbant randevuları, personel maaşları, idman kayıtları ve gelir-gider finans takibi tek ekranda.",
+    title: "Dijital Hara & Eküri Yönetimi",
+    desc: "Kağıt-kalem devri kapandı. Aşı takviminden nalbant randevularına, personel maaşlarından idman raporlarına kadar tüm operasyonunuzu cepten yönetin. Finansal kontrol artık parmaklarınızın ucunda.",
     icon: <TbHome />,
     bgPattern: "radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%)",
     color: "#3b82f6", 
   },
   {
     id: 1,
-    label: "DAMIZLIK",
-    title: "Profesyonel Aygır Yönetimi",
-    desc: "Aygırınızın aşım performansını, rezervasyonlarını ve taylarının saha başarılarını takip edin. Aşım sertifikaları ve veteriner kontrollerini dijitalleştirin.",
+    label: "AYGIR",
+    title: "Aygır Kariyer & Aşım Yönetimi",
+    desc: "Aygırınızın marka değerini artırın. Aşım rezervasyonlarını dijital ortamda yönetin, tayların saha başarılarını anlık takip edin ve kazanç projeksiyonlarını verilerle yönetin.",
     icon: <TbHorse />,
     bgPattern: "radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%)",
     color: "#d4af37", 
@@ -29,8 +29,8 @@ const features = [
   {
     id: 2,
     label: "GENETİK",
-    title: "SaFLine AI™ Eşleşme Analizi",
-    desc: "9 nesil geriye dönük Impact Analysis, Dosage profili ve Chef-de-Race verilerini yapay zeka ile birleştirerek kısrağınız için şampiyon genetiğini tespit edin.",
+    title: "SoyLine AI™ Eşleşme Sihirbazı",
+    desc: "Şansı değil, veriyi kullanın. Milyonlarca yarış verisi, 9 nesil pedigri analizi ve yapay zeka algoritmalarıyla kısrağınız için 'Altın Çapraz'ı (Golden Cross) saniyeler içinde tespit edin.",
     icon: <TbDna />,
     bgPattern: "radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%)",
     color: "#10b981", 
@@ -39,16 +39,16 @@ const features = [
     id: 3,
     label: "BİYOMEKANİK",
     title: "Yapay Zeka Konformasyon Analizi",
-    desc: "Tayınızın fotoğrafını yükleyin, yapay zeka vücut açılarını, omuz eğimini ve sağrı yapısını analiz etsin. Sakatlık riski ve mesafe yatkınlığı raporunu alın.",
+    desc: "Gözle görülmeyeni görün. Tayınızın fotoğrafını yükleyin; yapay zeka omuz açılarını, sağrı eğimini ve biyomekanik yapısını analiz etsin. Sakatlık risklerini ve ideal mesafeyi önceden öngörün.",
     icon: <TbCamera />,
     bgPattern: "radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%)",
     color: "#8b5cf6", 
   },
   {
     id: 4,
-    label: "FİZİKSEL",
-    title: "Fenotip & Eşkal Analizi",
-    desc: "Sadece kağıt üzerindeki soya değil, fiziksel uyuma da bakın. Aygır ve kısrağın fiziksel özelliklerinin (renk, eşkal, vücut tipi) yavruya aktarım olasılıklarını hesaplayın.",
+    label: "FENOTİP",
+    title: "Fiziksel Uyum & Karakter Analizi",
+    desc: "Sadece kağıt üzerindeki soya değil, sahadaki atlete odaklanın. Aygır ve kısrağın fiziksel özelliklerini (renk, eşkal, vücut tipi) dengeleyerek kusursuz bir atlet yaratma şansını artırın.",
     icon: <TbEye />,
     bgPattern: "radial-gradient(circle, rgba(236, 72, 153, 0.15) 0%, transparent 70%)",
     color: "#ec4899", 
@@ -56,8 +56,8 @@ const features = [
   {
     id: 5,
     label: "TİCARET",
-    title: "Premium Pazaryeri",
-    desc: "Türkiye'nin en seçkin tayları, damızlık kısrakları ve aygır payları burada el değiştiriyor. Video destekli, veteriner raporlu ve pedigri onaylı güvenli ticaret.",
+    title: "SoyLine Elit Pazaryeri",
+    desc: "Güvenli ticaretin yeni adresi. Sadece veteriner raporlu ve pedigri onaylı taylar, damızlıklar ve aygır payları. Şeffaf, hızlı ve güvenilir alım-satım platformu.",
     icon: <TbShoppingBag />,
     bgPattern: "radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, transparent 70%)",
     color: "#f97316", 
@@ -342,7 +342,7 @@ export default function Home() {
         <div style={{ marginBottom: '10px', fontSize:'1.5rem', fontFamily:'serif', color:'#fff' }}>
           Soy<span style={{color:'#d4af37', fontFamily:'sans-serif', fontWeight:'bold', fontStyle:'italic'}}>Line</span>
         </div>
-        <p>&copy; 2026 SoyLine Technology. Tüm Hakları Saklıdır.</p>
+        <p>&copy; 2026 SoyLine Teknoloji. Tüm Hakları Saklıdır.</p>
       </footer>
     </>
   );
