@@ -373,7 +373,7 @@ export default function Home() {
       </section>
 
       <footer style={{textAlign:'center', padding:'40px', color:'#64748b', fontSize:'0.8rem', background:'#020617'}}>
-        <p>&copy; 2026 SoyLine Teknoloji. Tüm Hakları Saklıdır.</p>
+        <p>&copy; 2026 SoyLine Teknoloji. Tüm Hakları Saklıdır</p>
       </footer>
     </>
   );
