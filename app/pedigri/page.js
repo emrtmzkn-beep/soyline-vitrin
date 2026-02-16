@@ -78,6 +78,16 @@ async function searchAllHorsesByName(term, limit = 5) {
 }
 
 async function getHorseById(horseId) {
+    const getKisrakBlacktype = async (id) => {
+        if (!id) return null;
+        const { data } = await supabase
+            .from('kisrak')
+            .select('blacktype')
+            .eq('kisrak_id', id)
+            .single();
+        return data?.blacktype ?? null;
+    };
+
     let { data, error } = await supabase
         .from('tum_at')
         .select('id, ad, baba_id, anne_id')
@@ -93,6 +103,11 @@ async function getHorseById(horseId) {
         data = fallback.data;
     }
 
+    if (data) {
+        const blacktype = await getKisrakBlacktype(data.id);
+        return { ...data, blacktype };
+    }
+
     return data || null;
 }
 
@@ -102,6 +117,7 @@ const PedigreeNode = ({ node, col, row, span, totalGens, colorMap, isMale }) => 
     
     const safeNode = node || {};
     const name = safeNode.ad || 'Bilinmiyor';
+    const hasBlackType = !isMale && Number(safeNode.blacktype) > 0;
     
     const hasColor = colorMap[safeNode.id] && safeNode.id; 
     
@@ -127,7 +143,10 @@ const PedigreeNode = ({ node, col, row, span, totalGens, colorMap, isMale }) => 
     return (
         <>
             <div className="ped-cell" style={style} title={name}>
-                {name}
+                <span className="name-inline">
+                    <span>{name}</span>
+                    {hasBlackType && <span className="bt-badge" title="Black Type">★ BT</span>}
+                </span>
             </div>
             <PedigreeNode node={safeNode.baba} col={col + 1} row={row} span={span / 2} totalGens={totalGens} colorMap={colorMap} isMale={true} />
             <PedigreeNode node={safeNode.anne} col={col + 1} row={row + (span / 2)} span={span / 2} totalGens={totalGens} colorMap={colorMap} isMale={false} />
@@ -263,6 +282,9 @@ function PedigreeResultContent() {
                 .pedigree-grid { display: grid; grid-template-columns: repeat(${genParam}, 1fr); grid-auto-rows: minmax(30px, auto); gap: 4px; min-width: ${genParam * 120}px; }
                 .ped-cell { display: flex; align-items: center; justify-content: center; text-align: center; border-radius: 4px; transition: 0.2s; overflow: hidden; cursor: default; }
                 .ped-cell:hover { transform: scale(1.05); z-index: 20; box-shadow: 0 0 10px rgba(0,0,0,0.5); }
+                .name-inline { display: inline-flex; flex-direction: column; align-items: center; gap: 3px; min-width: 0; }
+                .bt-badge { display: inline-flex; align-items: center; border: 1px solid rgba(254,220,0,0.65); background: #0f172a; color: #fedc00; border-radius: 999px; padding: 1px 5px; font-size: 0.5rem; font-weight: 800; line-height: 1; white-space: nowrap; }
+                .bt-badge.legend { font-size: 0.62rem; padding: 2px 6px; }
                 
                 .legend { display: flex; gap: 15px; justify-content: center; margin-top: 15px; flex-wrap: wrap; margin-bottom: 50px; }
                 .legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.8rem; color: #cbd5e1; }
@@ -354,6 +376,7 @@ function PedigreeResultContent() {
                 <div className="legend-item"><span className="dot dot-blue"></span> Baba Hattı</div>
                 <div className="legend-item"><span className="dot dot-pink"></span> Anne Hattı</div>
                 <div className="legend-item"><span className="dot dot-multi"></span> Inbreeding (Akrabalık)</div>
+                <div className="legend-item"><span className="bt-badge legend">★ BT</span> Black Type (kısrakta kalite göstergesi)</div>
             </div>
 
             <div className="new-search-section">
