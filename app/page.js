@@ -268,12 +268,8 @@ export default function Home() {
         .overlay-gradient { position: absolute; inset: 0; background: radial-gradient(circle, transparent 20%, #020617 100%); z-index: 1; }
         .hero-content { position: relative; z-index: 2; max-width: 900px; padding: 0 20px; margin-top: 60px; }
         .hero-title { font-size: clamp(2.2rem, 6vw, 4.5rem); margin-bottom: 20px; line-height: 1.1; font-family: 'Playfair Display', serif; text-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .hero-desc { font-size: 1.25rem; color: #cbd5e1; margin-bottom: 40px; line-height: 1.6; max-width: 700px; margin-left: auto; margin-right: auto; }
+        .hero-desc { font-size: 1.25rem; color: #cbd5e1; margin-bottom: 20px; line-height: 1.6; max-width: 700px; margin-left: auto; margin-right: auto; }
         .hero-btns { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
-        .btn-main { background: linear-gradient(135deg, var(--gold), #eab308); color: #000; padding: 16px 45px; border-radius: 50px; font-weight: 800; text-decoration: none; box-shadow: 0 10px 30px rgba(254, 220, 0, 0.3); transition: 0.3s; }
-        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(254, 220, 0, 0.5); }
-        .btn-hero-outline { color: #fff; border: 1px solid #fff; padding: 16px 45px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: 0.2s; }
-        .btn-hero-outline:hover { background: rgba(255,255,255,0.1); }
 
         /* --- PEDİGRİ ARAMA BÖLÜMÜ --- */
         .pedigree-search-section {
@@ -386,6 +382,17 @@ export default function Home() {
         .main-img { width: 92%; height: 92%; object-fit: cover; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); z-index: 2; transition: transform 0.7s ease; }
         .main-img:hover { transform: scale(1.02); }
 
+        .site-footer {
+            width: 100%;
+            text-align: center;
+            padding: 24px 16px;
+            background: #020617;
+            border-top: 1px solid #1e293b;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            letter-spacing: 0.2px;
+        }
+
         @media (max-width: 1024px) {
           .slider-container { grid-template-columns: 1fr; text-align: center; gap: 50px; }
           .visual-frame { height: 400px; width: 100%; }
@@ -404,8 +411,6 @@ export default function Home() {
                     .hero-content { margin-top: 20px; max-width: 100%; padding: 0 16px; }
                     .hero-title { font-size: 2.4rem; }
                     .hero-desc { font-size: 1rem; margin-bottom: 28px; }
-                    .hero-btns { flex-direction: column; width: 100%; max-width: 320px; margin: 0 auto; }
-                    .btn-main, .btn-hero-outline { width: 100%; padding: 14px 20px; box-sizing: border-box; }
 
                     .pedigree-search-section { margin-top: -35px; padding: 0 14px 60px; gap: 20px; }
                     .pedigree-box { padding: 20px 16px; border-radius: 16px; }
@@ -437,6 +442,7 @@ export default function Home() {
                     .visual-frame { height: 240px; }
                     .text-side h2 { font-size: 1.8rem !important; }
                     .nav-btn { width: 38px; height: 38px; }
+                    .site-footer { font-size: 0.82rem; padding: 20px 12px; }
                 }
       `}</style>
 
@@ -464,10 +470,6 @@ export default function Home() {
           <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: "easeOut" }}>
             <h1 className="hero-title">Şampiyonun Genetiğini<br /><span style={{ color: goldColor }}>Veriyle Keşfet</span></h1>
             <p className="hero-desc">SoyLine; yapay zeka destekli eşleşme analizi, kapsamlı ahır yönetimi ve güvenli ticaret platformu ile atçılıkta şansa yer bırakmaz.</p>
-            <div className="hero-btns">
-              <Link href="/vitrin" className="btn-main">AYGIRLARI İNCELE</Link>
-              <Link href="/analiz" className="btn-hero-outline">HEMEN ANALİZ YAP</Link>
-            </div>
           </motion.div>
         </div>
       </header>
@@ -615,6 +617,8 @@ export default function Home() {
             </div>
         </div>
       </section>
+
+            <footer className="site-footer">2026 Soyline Teknoloji tüm hakları saklıdır.</footer>
     </>
   );
 }
