@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { createClient } from '@supabase/supabase-js'; 
 import { motion, AnimatePresence } from 'framer-motion'; 
 import { TbArrowRight, TbChevronRight, TbChevronLeft, TbSearch, TbHorseToy, TbGenderMale, TbGenderFemale, TbDna } from 'react-icons/tb';
+import { HiOutlineSparkles, HiOutlineBuildingOffice2, HiOutlinePresentationChartLine, HiOutlineCpuChip, HiOutlineBeaker, HiOutlineShoppingBag } from 'react-icons/hi2';
 
 // --- SUPABASE BAĞLANTISI ---
 const supabase = createClient(
@@ -80,12 +81,12 @@ async function searchAllHorsesByName(term, limit = 6) {
 
 // --- SLIDER VERİSİ ---
 const features = [
-  { id: 0, key: 'genetik', title: "SoyLine AI™ Eşleşme Analizi", desc: "9 nesil geriye dönük Impact Analysis ve genetik algoritma ile şampiyon potansiyelini keşfedin.", color: "#10b981", image: "/assets/slider/slayt1_1.png", bgPattern: "radial-gradient(circle at center, rgba(16, 185, 129, 0.15) 0%, transparent 60%)" },
-  { id: 1, key: 'yonetim', title: "Dijital Haranızı Yönetin", desc: "Aşı takvimi, nalbant randevuları, personel maaşları ve idman raporları tek ekranda.", color: "#3b82f6", image: "/assets/slider/slayt2_1.png", bgPattern: "radial-gradient(circle at center, rgba(59, 130, 246, 0.15) 0%, transparent 60%)" },
-  { id: 2, key: 'damizlik', title: "Profesyonel Aygır Yönetimi", desc: "Aşım performansı, rezervasyon takibi ve tayların saha başarılarının anlık analizi.", color: "#fedc00", image: "/assets/slider/slayt3_1.png", bgPattern: "radial-gradient(circle at center, rgba(254, 220, 0, 0.15) 0%, transparent 60%)" },
-  { id: 3, key: 'biyomekanik', title: "Yapay Zeka Konformasyon", desc: "Fotoğraftan vücut açıları ve sakatlık risk analizi ile doğru kararlar verin.", color: "#8b5cf6", image: "/assets/slider/slayt4_1.png", bgPattern: "radial-gradient(circle at center, rgba(139, 92, 246, 0.15) 0%, transparent 60%)" },
-  { id: 4, key: 'fiziksel', title: "Fenotip & Eşkal Uyumu", desc: "Sadece kağıt üstünde değil, fiziksel özelliklerin yavruya aktarımını dengeleyin.", color: "#ec4899", image: "/assets/slider/slayt5_1.png", bgPattern: "radial-gradient(circle at center, rgba(236, 72, 153, 0.15) 0%, transparent 60%)" },
-  { id: 5, key: 'ticaret', title: "Premium At Pazaryeri", desc: "Veteriner raporlu ve pedigri onaylı seçkin taylar ve damızlıklar.", color: "#f97316", image: "/assets/slider/slayt6_1.png", bgPattern: "radial-gradient(circle at center, rgba(249, 115, 22, 0.15) 0%, transparent 60%)" }
+    { id: 0, key: 'genetik', title: "SoyLine AI™ Eşleşme Analizi", desc: "9 nesil geriye dönük Impact Analysis ve genetik algoritma ile şampiyon potansiyelini keşfedin.", color: "#10b981", icon: HiOutlineSparkles, tags: ["9 Nesil", "AI Impact", "Eşleşme Skoru"], bgPattern: "radial-gradient(circle at center, rgba(16, 185, 129, 0.15) 0%, transparent 60%)" },
+    { id: 1, key: 'yonetim', title: "Dijital Haranızı Yönetin", desc: "Aşı takvimi, nalbant randevuları, personel maaşları ve idman raporları tek ekranda.", color: "#3b82f6", icon: HiOutlineBuildingOffice2, tags: ["Aşı Takvimi", "Randevular", "Maaş Yönetimi"], bgPattern: "radial-gradient(circle at center, rgba(59, 130, 246, 0.15) 0%, transparent 60%)" },
+    { id: 2, key: 'damizlik', title: "Profesyonel Aygır Yönetimi", desc: "Aşım performansı, rezervasyon takibi ve tayların saha başarılarının anlık analizi.", color: "#fedc00", icon: HiOutlinePresentationChartLine, tags: ["Performans", "Rezervasyon", "Saha Analizi"], bgPattern: "radial-gradient(circle at center, rgba(254, 220, 0, 0.15) 0%, transparent 60%)" },
+    { id: 3, key: 'biyomekanik', title: "Yapay Zeka Konformasyon", desc: "Fotoğraftan vücut açıları ve sakatlık risk analizi ile doğru kararlar verin.", color: "#8b5cf6", icon: HiOutlineCpuChip, tags: ["Açı Ölçümü", "Risk Tespiti", "AI Rapor"], bgPattern: "radial-gradient(circle at center, rgba(139, 92, 246, 0.15) 0%, transparent 60%)" },
+    { id: 4, key: 'fiziksel', title: "Fenotip & Eşkal Uyumu", desc: "Sadece kağıt üstünde değil, fiziksel özelliklerin yavruya aktarımını dengeleyin.", color: "#ec4899", icon: HiOutlineBeaker, tags: ["Fenotip", "Eşkal", "Uyum Analizi"], bgPattern: "radial-gradient(circle at center, rgba(236, 72, 153, 0.15) 0%, transparent 60%)" },
+    { id: 5, key: 'ticaret', title: "Premium At Pazaryeri", desc: "Veteriner raporlu ve pedigri onaylı seçkin taylar ve damızlıklar.", color: "#f97316", icon: HiOutlineShoppingBag, tags: ["Onaylı İlanlar", "Güvenli Satış", "Premium Pazar"], bgPattern: "radial-gradient(circle at center, rgba(249, 115, 22, 0.15) 0%, transparent 60%)" }
 ];
 
 export default function Home() {
@@ -379,8 +380,10 @@ export default function Home() {
         .visual-frame { width: 100%; height: 550px; border-radius: 30px; display: flex; alignItems: center; justifyContent: center; position: relative; backdrop-filter: blur(20px); box-shadow: 0 30px 80px rgba(0,0,0,0.6); overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
         .dots-grid { display: grid; grid-template-columns: repeat(20, 1fr); gap: 20px; opacity: 0.1; width: 140%; height: 140%; position: absolute; top: -20%; left: -20%; z-index: 0; mask-image: radial-gradient(circle, black 30%, transparent 70%); }
         .dot { width: 4px; height: 4px; background: #fff; border-radius: 50%; }
-        .main-img { width: 92%; height: 92%; object-fit: cover; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); z-index: 2; transition: transform 0.7s ease; }
-        .main-img:hover { transform: scale(1.02); }
+        .icon-showcase { position: relative; z-index: 2; width: 88%; height: 88%; border-radius: 24px; border: 1px solid rgba(255,255,255,0.12); background: linear-gradient(160deg, rgba(15,23,42,0.9), rgba(2,6,23,0.6)); display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 24px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.08); }
+        .icon-core { width: 170px; height: 170px; border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 2px solid currentColor; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.22), rgba(255,255,255,0.04)); box-shadow: 0 0 40px rgba(255,255,255,0.12); }
+        .icon-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; max-width: 90%; }
+        .icon-tag { padding: 8px 14px; border-radius: 999px; border: 1px solid currentColor; background: rgba(255,255,255,0.04); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.2px; }
 
         .site-footer {
             width: 100%;
@@ -610,8 +613,24 @@ export default function Home() {
             <div className="visual-side" style={{ display:'flex', justifyContent:'center', alignItems:'center' }}>
                 <AnimatePresence mode='wait'>
                     <motion.div key={activeTab} className="visual-frame" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 1.05 }} transition={{ duration: 0.6, ease: "circOut" }} style={{ background: features[activeTab].bgPattern, boxShadow: `0 30px 60px -20px ${features[activeTab].color}30` }}>
+                        {(() => {
+                          const ActiveIcon = features[activeTab].icon;
+                          return (
+                            <>
                         <div className="dots-grid">{[...Array(400)].map((_, i) => (<div key={i} className="dot" style={{backgroundColor: features[activeTab].color}}></div>))}</div>
-                        <motion.img src={features[activeTab].image} alt={features[activeTab].title} className="main-img" initial={{ filter: 'blur(10px)' }} animate={{ filter: 'blur(0px)' }} transition={{ duration: 0.4 }} />
+                        <motion.div className="icon-showcase" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
+                            <div className="icon-core" style={{ color: features[activeTab].color }}>
+                                <ActiveIcon size={88} />
+                            </div>
+                            <div className="icon-tags" style={{ color: features[activeTab].color }}>
+                                {features[activeTab].tags.map((tag) => (
+                                  <span key={tag} className="icon-tag">{tag}</span>
+                                ))}
+                            </div>
+                        </motion.div>
+                            </>
+                          );
+                        })()}
                     </motion.div>
                 </AnimatePresence>
             </div>
