@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation'; 
 import { createClient } from '@supabase/supabase-js'; 
 import { motion, AnimatePresence } from 'framer-motion'; 
-import { TbArrowRight, TbChevronRight, TbChevronLeft, TbSearch, TbHorseToy, TbGenderMale, TbGenderFemale, TbDna } from 'react-icons/tb';
-import { HiOutlineSparkles, HiOutlineBuildingOffice2, HiOutlinePresentationChartLine, HiOutlineCpuChip, HiOutlineBeaker, HiOutlineShoppingBag } from 'react-icons/hi2';
+import { TbArrowRight, TbSearch, TbHorseToy, TbGenderMale, TbGenderFemale, TbDna } from 'react-icons/tb';
+import { HiOutlineSparkles, HiOutlinePresentationChartLine, HiOutlineShoppingBag, HiOutlineMap, HiOutlineCamera, HiOutlineFingerPrint, HiOutlineClock, HiOutlineHeart, HiOutlineBriefcase, HiOutlineMicrophone } from 'react-icons/hi2';
 
 // --- SUPABASE BAĞLANTISI ---
 const supabase = createClient(
@@ -80,19 +80,22 @@ async function searchAllHorsesByName(term, limit = 6) {
 }
 
 // --- SLIDER VERİSİ ---
-const features = [
-    { id: 0, key: 'genetik', title: "SoyLine AI™ Eşleşme Analizi", desc: "9 nesil geriye dönük Impact Analysis ve genetik algoritma ile şampiyon potansiyelini keşfedin.", color: "#10b981", icon: HiOutlineSparkles, tags: ["9 Nesil", "AI Impact", "Eşleşme Skoru"], bgPattern: "radial-gradient(circle at center, rgba(16, 185, 129, 0.15) 0%, transparent 60%)" },
-    { id: 1, key: 'yonetim', title: "Dijital Haranızı Yönetin", desc: "Aşı takvimi, nalbant randevuları, personel maaşları ve idman raporları tek ekranda.", color: "#3b82f6", icon: HiOutlineBuildingOffice2, tags: ["Aşı Takvimi", "Randevular", "Maaş Yönetimi"], bgPattern: "radial-gradient(circle at center, rgba(59, 130, 246, 0.15) 0%, transparent 60%)" },
-    { id: 2, key: 'damizlik', title: "Profesyonel Aygır Yönetimi", desc: "Aşım performansı, rezervasyon takibi ve tayların saha başarılarının anlık analizi.", color: "#fedc00", icon: HiOutlinePresentationChartLine, tags: ["Performans", "Rezervasyon", "Saha Analizi"], bgPattern: "radial-gradient(circle at center, rgba(254, 220, 0, 0.15) 0%, transparent 60%)" },
-    { id: 3, key: 'biyomekanik', title: "Yapay Zeka Konformasyon", desc: "Fotoğraftan vücut açıları ve sakatlık risk analizi ile doğru kararlar verin.", color: "#8b5cf6", icon: HiOutlineCpuChip, tags: ["Açı Ölçümü", "Risk Tespiti", "AI Rapor"], bgPattern: "radial-gradient(circle at center, rgba(139, 92, 246, 0.15) 0%, transparent 60%)" },
-    { id: 4, key: 'fiziksel', title: "Fenotip & Eşkal Uyumu", desc: "Sadece kağıt üstünde değil, fiziksel özelliklerin yavruya aktarımını dengeleyin.", color: "#ec4899", icon: HiOutlineBeaker, tags: ["Fenotip", "Eşkal", "Uyum Analizi"], bgPattern: "radial-gradient(circle at center, rgba(236, 72, 153, 0.15) 0%, transparent 60%)" },
-    { id: 5, key: 'ticaret', title: "Premium At Pazaryeri", desc: "Veteriner raporlu ve pedigri onaylı seçkin taylar ve damızlıklar.", color: "#f97316", icon: HiOutlineShoppingBag, tags: ["Onaylı İlanlar", "Güvenli Satış", "Premium Pazar"], bgPattern: "radial-gradient(circle at center, rgba(249, 115, 22, 0.15) 0%, transparent 60%)" }
+const heroCards = [
+    // --- 1. SOYLINE AI VE GENETİK (Üst Satır) ---
+    { title: "Pedigri Mühendisliği", desc: "9 nesile kadar inebilen derin soy ağacı analizi ve inbreeding (akrabalık) tespiti.", color: "#10b981", icon: HiOutlineSparkles },
+    { title: "Eşleşme Uyumu", desc: "Soyline AI ile aygır ve kısrağınızın genetik uyumunu, başarı potansiyelini sayılarla görün.", color: "#fedc00", icon: HiOutlinePresentationChartLine },
+    { title: "Pist ve Mesafe Optimizasyonu", desc: "Kan hatlarının pist türü (kum/çim/sentetik) ve mesafe yatkınlıklarını kanıtlanmış verilerle analiz edin.", color: "#6366f1", icon: HiOutlineMap },
+    { title: "Soyline Vision: Konformasyon", desc: "Özel görüntü işleme teknolojimizle fotoğraftan vücut açıları, biyomekanik ve fiziksel risk tespiti.", color: "#ec4899", icon: HiOutlineCamera },
+    { title: "Soyline AI: Fenotip Motoru", desc: "Safkanın fiziksel özelliklerinin kan hattıyla uyumunu ölçen, atınıza özel fenotipik değerlendirme.", color: "#8b5cf6", icon: HiOutlineFingerPrint },
+    // --- 2. YÖNETİM, TİCARET VE TOPLULUK (Alt Satır) ---
+    { title: "Hipodrom Takip Sistemi", desc: "Günlük hipodrom rutinleri, idman dereceleri, yarış kayıtları ve kişisel yarış asistanınız tek ekranda.", color: "#3b82f6", icon: HiOutlineClock },
+    { title: "Damızlık ve Tay Takibi", desc: "Gebelik süreçleri, aşım takvimleri ve tay gelişim aşamaları için profesyonel yönetim modülü.", color: "#f43f5e", icon: HiOutlineHeart },
+    { title: "Aygır Sahibi Paneli", desc: "Aygırınıza özel hat uyumu analizleri, aşım planlaması ve gücünüzü göstereceğiniz dijital vitrin.", color: "#0ea5e9", icon: HiOutlineBriefcase },
+    { title: "Kapalı Devre Pazar Yeri", desc: "Sadece doğrulanmış üyelere özel; güvenli safkan, pay ve aşım hakkı ticareti.", color: "#f97316", icon: HiOutlineShoppingBag },
+    { title: "Soyline Spaces & Topluluk", desc: "Canlı ses odaları, atçı sözlüğü, yarış oyunları ve interaktif camia deneyimi.", color: "#06b6d4", icon: HiOutlineMicrophone },
 ];
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState(0);
-  const [email, setEmail] = useState('');
-  const [submitted, setSubmitted] = useState(false);
   const goldColor = '#fedc00';
   const router = useRouter();
 
@@ -117,12 +120,6 @@ export default function Home() {
   
   const sireRef = useRef(null);
   const damRef = useRef(null);
-
-  // Slider Timer
-  useEffect(() => {
-    const timer = setInterval(() => setActiveTab((prev) => (prev + 1) % features.length), 7000);
-    return () => clearInterval(timer);
-  }, []);
 
   // --- 1. GENEL AT ARAMA (tum_atlar) ---
   useEffect(() => {
@@ -219,11 +216,6 @@ export default function Home() {
       router.push(`/pedigri/muhtemel?sire_id=${selectedSire.aygir_id}&dam_id=${selectedDam.kisrak_id}&gen=${foalGen}`);
   };
 
-  const handleSubscribe = (e) => {
-    e.preventDefault();
-    if(email) setSubmitted(true);
-  };
-
   return (
     <>
       <style jsx global>{`
@@ -234,22 +226,39 @@ export default function Home() {
         
         /* NAVBAR */
         .navbar {
-          display: flex; align-items: center; justify-content: space-between;
+          display: flex; align-items: center; justify-content: center;
           padding: 15px 40px; background: rgba(2, 6, 23, 0.85); backdrop-filter: blur(12px);
-          border-bottom: 1px solid rgba(255,255,255,0.05); height: 80px;
+          border-bottom: 1px solid rgba(255,255,255,0.05); height: 90px;
           position: fixed; top: 0; width: 100%; z-index: 100; box-sizing: border-box;
         }
         .logo-link {
           text-decoration: none; display: flex; align-items: center;
-          font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.8rem;
+          font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 2.6rem;
           line-height: 1; letter-spacing: -0.5px;
+          position: relative;
         }
-        .soy-text { color: #ffffff; }
+        .soy-text {
+          color: #ffffff;
+          text-shadow: 0 0 20px rgba(255,255,255,0.15);
+        }
         .line-wrapper { position: relative; display: flex; flex-direction: column; }
-        .line-text { color: var(--gold); }
+        .line-text {
+          color: var(--gold);
+          text-shadow: 0 0 20px rgba(254,220,0,0.4), 0 0 40px rgba(254,220,0,0.15);
+          background: linear-gradient(90deg, #fedc00, #fff7a0, #fedc00);
+          background-size: 200% 100%;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          animation: logoShimmer 3s ease-in-out infinite;
+        }
+        @keyframes logoShimmer {
+          0%, 100% { background-position: 0% 50%; filter: drop-shadow(0 0 8px rgba(254,220,0,0.3)); }
+          50% { background-position: 100% 50%; filter: drop-shadow(0 0 20px rgba(254,220,0,0.6)); }
+        }
         .line-swosh {
-          position: absolute; bottom: -6px; left: -5%; width: 110%; height: auto;
-          pointer-events: none;
+          position: absolute; bottom: -8px; left: -5%; width: 110%; height: 14px;
+          pointer-events: none; overflow: visible;
+          filter: drop-shadow(0 0 6px rgba(254,220,0,0.5));
         }
         .nav-links { display: flex; gap: 30px; }
         .nav-links a {
@@ -264,13 +273,137 @@ export default function Home() {
         .btn-outline:hover { background: rgba(254, 220, 0, 0.15); box-shadow: 0 0 15px rgba(254,220,0,0.2); }
 
         /* HERO */
-        .hero { min-height: 620px; height: 90vh; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; overflow: hidden; background: #020617; padding: 100px 0 40px; box-sizing: border-box; }
+        .hero { min-height: 100vh; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; overflow: hidden; background: #020617; padding: 80px 0 40px; box-sizing: border-box; }
         .hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; opacity: 0.55; mix-blend-mode: hard-light; filter: contrast(1.1); }
         .overlay-gradient { position: absolute; inset: 0; background: radial-gradient(circle, transparent 20%, #020617 100%); z-index: 1; }
-        .hero-content { position: relative; z-index: 2; max-width: 900px; padding: 0 20px; margin-top: 60px; }
-        .hero-title { font-size: clamp(2.2rem, 6vw, 4.5rem); margin-bottom: 20px; line-height: 1.1; font-family: 'Playfair Display', serif; text-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .hero-desc { font-size: 1.25rem; color: #cbd5e1; margin-bottom: 20px; line-height: 1.6; max-width: 700px; margin-left: auto; margin-right: auto; }
-        .hero-btns { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+        .hero-content { position: relative; z-index: 2; max-width: 1300px; padding: 0 20px; margin-top: 30px; width: 100%; }
+                @keyframes pulseGlow {
+                    0%, 100% { box-shadow: 0 0 20px rgba(254, 220, 0, 0.15), 0 0 60px rgba(254, 220, 0, 0.05); border-color: rgba(254, 220, 0, 0.5); }
+                    50% { box-shadow: 0 0 30px rgba(254, 220, 0, 0.35), 0 0 80px rgba(254, 220, 0, 0.15); border-color: rgba(254, 220, 0, 0.9); }
+                }
+                @keyframes dotPulse {
+                    0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 8px rgba(254, 220, 0, 0.8); }
+                    50% { opacity: 0.5; transform: scale(0.7); box-shadow: 0 0 20px rgba(254, 220, 0, 1); }
+                }
+                .coming-soon-banner {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 12px;
+                    margin-bottom: 36px;
+                    margin-top: -20px;
+                }
+                .coming-soon-chip {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 10px;
+                    background: rgba(254, 220, 0, 0.08);
+                    border: 2px solid rgba(254, 220, 0, 0.5);
+                    color: var(--gold);
+                    padding: 14px 28px;
+                    border-radius: 999px;
+                    font-weight: 700;
+                    font-size: 1rem;
+                    letter-spacing: 2px;
+                    text-transform: uppercase;
+                    animation: pulseGlow 2.5s ease-in-out infinite;
+                }
+                .chip-dot {
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    background: var(--gold);
+                    animation: dotPulse 1.5s ease-in-out infinite;
+                }
+                .coming-soon-sub {
+                    color: #94a3b8;
+                    font-size: 1.05rem;
+                    letter-spacing: 0.5px;
+                    font-weight: 500;
+                }
+                .coming-soon-sub span {
+                    color: var(--gold);
+                    font-weight: 700;
+                }
+
+        /* HERO FEATURE BOXES */
+        .hero-boxes {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 14px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto 30px;
+        }
+        .hero-box {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(254, 220, 0, 0.25);
+            border-radius: 14px;
+            padding: 20px 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            text-align: center;
+            cursor: default;
+            transition: transform 0.35s cubic-bezier(.4,0,.2,1), box-shadow 0.35s ease, border-color 0.35s ease;
+        }
+        .hero-box:hover {
+            transform: translateY(-8px) scale(1.03);
+            border-color: rgba(254, 220, 0, 0.7);
+            box-shadow: 0 8px 30px -6px rgba(254, 220, 0, 0.2), 0 16px 40px -8px var(--box-glow);
+        }
+        .hero-box-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--box-glow);
+            color: var(--box-color);
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+        .hero-box h3 {
+            margin: 0;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 0.2px;
+            line-height: 1.25;
+        }
+        .hero-box p {
+            margin: 0;
+            font-size: 0.72rem;
+            color: #94a3b8;
+            line-height: 1.4;
+        }
+        .hero-sub {
+            font-size: 1rem;
+            color: #64748b;
+            margin: 0 auto;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 1100px) {
+            .hero-boxes { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        }
+        @media (max-width: 768px) {
+            .hero-boxes { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .hero-box { padding: 16px 12px; }
+            .hero-box h3 { font-size: 0.78rem; }
+            .hero-box p { font-size: 0.68rem; }
+        }
+        @media (max-width: 480px) {
+            .hero-boxes { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+            .hero-box { padding: 14px 10px; }
+            .hero-box-icon { width: 36px; height: 36px; }
+            .hero-box h3 { font-size: 0.72rem; }
+            .hero-box p { font-size: 0.64rem; }
+        }
 
         /* --- PEDİGRİ ARAMA BÖLÜMÜ --- */
         .pedigree-search-section {
@@ -359,47 +492,7 @@ export default function Home() {
         }
         .go-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3); }
 
-        /* LANSMAN BAR */
-        .launch-bar {
-            width: 100%; padding: 80px 20px; 
-            background: linear-gradient(180deg, #0f172a 0%, #020617 100%);
-            border-top: 1px solid #1e293b; border-bottom: 1px solid #1e293b;
-            text-align: center; display: flex; flex-direction: column; align-items: center; margin-top: 40px;
-        }
-        .mail-input-group { display: flex; gap: 10px; margin-top: 30px; width: 100%; max-width: 500px; }
-        .mail-input { flex: 1; background: rgba(255,255,255,0.05); border: 1px solid #334155; padding: 18px 25px; border-radius: 12px; color: white; outline: none; font-size: 1rem; }
-        .mail-input:focus { border-color: var(--gold); }
-        .submit-btn { background: var(--gold); color: #000; border: none; padding: 0 35px; border-radius: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 10px; }
-
-        /* SLIDER STYLES */
-        .feature-section { padding: 80px 20px 120px 20px; background: #0b1121; position: relative; border-top: 1px solid #1e293b; }
-        .slider-container { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: center; min-height: 600px; }
-        .text-side { position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; }
-        .nav-btn { background: transparent; border: 1px solid #334155; color: #94a3b8; width: 50px; height: 50px; border-radius: 50%; display: flex; alignItems: center; justifyContent: center; cursor: pointer; transition: 0.3s; }
-        .nav-btn:hover { border-color: var(--gold); color: var(--gold); background: rgba(254, 220, 0, 0.1); }
-        .visual-frame { width: 100%; height: 550px; border-radius: 30px; display: flex; alignItems: center; justifyContent: center; position: relative; backdrop-filter: blur(20px); box-shadow: 0 30px 80px rgba(0,0,0,0.6); overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
-        .dots-grid { display: grid; grid-template-columns: repeat(20, 1fr); gap: 20px; opacity: 0.1; width: 140%; height: 140%; position: absolute; top: -20%; left: -20%; z-index: 0; mask-image: radial-gradient(circle, black 30%, transparent 70%); }
-        .dot { width: 4px; height: 4px; background: #fff; border-radius: 50%; }
-        .icon-showcase { position: relative; z-index: 2; width: 88%; height: 88%; border-radius: 24px; border: 1px solid rgba(255,255,255,0.12); background: linear-gradient(160deg, rgba(15,23,42,0.9), rgba(2,6,23,0.6)); display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 24px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.08); }
-        .icon-core { width: 170px; height: 170px; border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 2px solid currentColor; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.22), rgba(255,255,255,0.04)); box-shadow: 0 0 40px rgba(255,255,255,0.12); }
-        .icon-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; max-width: 90%; }
-        .icon-tag { padding: 8px 14px; border-radius: 999px; border: 1px solid currentColor; background: rgba(255,255,255,0.04); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.2px; }
-
-        .site-footer {
-            width: 100%;
-            text-align: center;
-            padding: 24px 16px;
-            background: #020617;
-            border-top: 1px solid #1e293b;
-            color: #94a3b8;
-            font-size: 0.9rem;
-            letter-spacing: 0.2px;
-        }
-
         @media (max-width: 1024px) {
-          .slider-container { grid-template-columns: 1fr; text-align: center; gap: 50px; }
-          .visual-frame { height: 400px; width: 100%; }
-          .hero-title { font-size: 3rem; }
           .pedigree-box { padding: 30px 20px; }
           .search-row { flex-direction: column; }
           .go-btn { width: 100%; }
@@ -408,12 +501,10 @@ export default function Home() {
         }
 
                 @media (max-width: 768px) {
-                    .navbar { height: 72px; padding: 12px 16px; }
-                    .logo-link { font-size: 1.5rem; }
-                    .hero { min-height: auto; height: auto; padding: 120px 0 60px; }
-                    .hero-content { margin-top: 20px; max-width: 100%; padding: 0 16px; }
-                    .hero-title { font-size: 2.4rem; }
-                    .hero-desc { font-size: 1rem; margin-bottom: 28px; }
+                    .navbar { height: 78px; padding: 12px 16px; }
+                    .logo-link { font-size: 2rem; }
+                    .hero { min-height: auto; height: auto; padding: 100px 0 40px; }
+                    .hero-content { margin-top: 10px; max-width: 100%; padding: 0 16px; }
 
                     .pedigree-search-section { margin-top: -35px; padding: 0 14px 60px; gap: 20px; }
                     .pedigree-box { padding: 20px 16px; border-radius: 16px; }
@@ -424,28 +515,66 @@ export default function Home() {
                     .gen-options { width: 100%; justify-content: center; }
                     .gen-btn { flex: 1; padding: 10px 12px; }
                     .go-btn { width: 100%; padding: 14px 18px; font-size: 1rem; }
-
-                    .mail-input-group { flex-direction: column; max-width: 320px; }
-                    .submit-btn { padding: 14px 18px; justify-content: center; }
-
-                    .feature-section { padding: 60px 16px 90px 16px; }
-                    .slider-container { gap: 30px; }
-                    .text-side h2 { font-size: 2.2rem !important; }
-                    .text-side p { font-size: 1rem !important; }
-                    .visual-frame { height: 300px; border-radius: 20px; }
-                    .nav-btn { width: 42px; height: 42px; }
                 }
 
                 @media (max-width: 480px) {
-                    .hero-title { font-size: 2rem; }
                     .pb-title { font-size: 1.5rem; }
                     .pb-desc { font-size: 0.9rem; }
                     .p-item { padding: 12px 14px; flex-direction: column; align-items: flex-start; gap: 4px; }
                     .pi-info { max-width: 100%; text-align: left; }
-                    .visual-frame { height: 240px; }
-                    .text-side h2 { font-size: 1.8rem !important; }
-                    .nav-btn { width: 38px; height: 38px; }
-                    .site-footer { font-size: 0.82rem; padding: 20px 12px; }
+                    .coming-soon-chip { font-size: 0.85rem; padding: 10px 20px; letter-spacing: 1.5px; }
+                    .coming-soon-sub { font-size: 0.9rem; }
+                }
+
+                /* FOOTER */
+                .site-footer {
+                    width: 100%;
+                    background: #020617;
+                    border-top: 1px solid #1e293b;
+                    padding: 50px 20px 30px;
+                    box-sizing: border-box;
+                }
+                .footer-inner {
+                    max-width: 1100px;
+                    margin: 0 auto;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 24px;
+                }
+                .footer-brand {
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                    font-family: 'Poppins', sans-serif;
+                    font-weight: 700;
+                    font-size: 1.4rem;
+                }
+                .footer-divider {
+                    width: 80px;
+                    height: 2px;
+                    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+                    border: none;
+                }
+                .footer-links {
+                    display: flex;
+                    gap: 28px;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+                .footer-links a {
+                    color: #64748b;
+                    text-decoration: none;
+                    font-size: 0.88rem;
+                    font-weight: 500;
+                    transition: color 0.2s;
+                }
+                .footer-links a:hover { color: var(--gold); }
+                .footer-copy {
+                    color: #475569;
+                    font-size: 0.82rem;
+                    letter-spacing: 0.3px;
+                    text-align: center;
                 }
       `}</style>
 
@@ -471,9 +600,31 @@ export default function Home() {
         </video>
         <div className="hero-content">
           <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: "easeOut" }}>
-            <h1 className="hero-title">Şampiyonun Genetiğini<br /><span style={{ color: goldColor }}>Veriyle Keşfet</span></h1>
-            <p className="hero-desc">SoyLine; yapay zeka destekli eşleşme analizi, kapsamlı ahır yönetimi ve güvenli ticaret platformu ile atçılıkta şansa yer bırakmaz.</p>
+                        <div className="coming-soon-banner">
+                            <div className="coming-soon-chip">
+                                <span className="chip-dot"></span>
+                                Çok Yakında
+                            </div>
+                            <p className="coming-soon-sub">Türk atçılığının hizmetinde, <span>yepyeni bir deneyim</span> başlıyor.</p>
+                        </div>
           </motion.div>
+
+          <motion.div className="hero-boxes" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }}>
+              {heroCards.map((card, i) => {
+                  const Icon = card.icon;
+                  return (
+                      <div key={i} className="hero-box" style={{ '--box-color': card.color, '--box-glow': `${card.color}22` }}>
+                          <div className="hero-box-icon"><Icon size={24} /></div>
+                          <h3>{card.title}</h3>
+                          <p>{card.desc}</p>
+                      </div>
+                  );
+              })}
+          </motion.div>
+
+          <motion.p className="hero-sub" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.6 }}>
+              Hepsi tek platformda, <span style={{color:'var(--gold)', fontWeight:700}}>SoyLine</span> ile.
+          </motion.p>
         </div>
       </header>
 
@@ -572,72 +723,17 @@ export default function Home() {
           </motion.div>
       </section>
 
-      {/* LANSMAN BAR */}
-      <section className="launch-bar">
-          <div style={{color:'var(--gold)', letterSpacing:'2px', fontWeight:'bold', marginBottom:'10px'}}>LANSMAN FIRSATI</div>
-          <h3 style={{fontSize:'2.2rem', margin:'10px 0', fontFamily:'"Playfair Display", serif', color:'#fff'}}>Kurucu Üye Ol, <span style={{color:'var(--gold)', fontStyle:'italic'}}>Sınırları Kaldır</span></h3>
-          <p style={{color:'#94a3b8', maxWidth:'600px', marginTop:'10px'}}>İlk 100 eküri arasına katılın, ömür boyu ücretsiz analiz hakkı kazanın.</p>
-          {!submitted ? (
-            <form className="mail-input-group" onSubmit={handleSubscribe}>
-              <input type="email" placeholder="E-posta adresiniz" className="mail-input" value={email} onChange={(e) => setEmail(e.target.value)} required />
-              <button type="submit" className="submit-btn">KAYDOL <TbArrowRight /></button>
-            </form>
-          ) : ( <div style={{marginTop:'20px', color:'#10b981', fontWeight:'bold', fontSize:'1.2rem'}}>✓ Kayıt Başarılı!</div> )}
-      </section>
 
-      {/* SLIDER SECTION */}
-      <section className="feature-section">
-        <div className="slider-container">
-            <div className="text-side">
-                <div style={{marginBottom:'25px', fontSize:'0.85rem', color: features[activeTab].color, fontWeight:'bold', letterSpacing:'3px', display:'flex', alignItems:'center', gap:'12px'}}>
-                    <span style={{width:'40px', height:'2px', background: features[activeTab].color}}></span>
-                    MODÜL 0{activeTab + 1}
-                </div>
-                <AnimatePresence mode='wait'>
-                    <motion.div key={activeTab} initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 30 }} transition={{ duration: 0.5 }}>
-                        <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '3.5rem', margin: '0 0 25px 0', lineHeight: 1.1, color:'#fff' }}>{features[activeTab].title}</h2>
-                        <p style={{ fontSize: '1.15rem', color: '#94a3b8', lineHeight: 1.8, marginBottom: '50px', maxWidth:'550px' }}>{features[activeTab].desc}</p>
-                        <Link href={`/ozellikler?tab=${features[activeTab].key}`} style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', background: `linear-gradient(90deg, ${features[activeTab].color}20, transparent)`, color: features[activeTab].color, textDecoration: 'none', fontWeight: 'bold', fontSize: '1rem', padding:'12px 25px', borderRadius:'8px', borderLeft:`4px solid ${features[activeTab].color}`}}>
-                            DETAYLI BİLGİ AL <TbArrowRight size={20} />
-                        </Link>
-                    </motion.div>
-                </AnimatePresence>
-                <div style={{ display: 'flex', gap: '20px', marginTop: '60px', alignItems:'center' }}>
-                    <button className="nav-btn" onClick={() => setActiveTab((prev) => (prev === 0 ? features.length - 1 : prev - 1))}><TbChevronLeft size={24} /></button>
-                    <div style={{display:'flex', gap:'8px'}}>
-                        {features.map((_, index) => (<div key={index} onClick={() => setActiveTab(index)} style={{ width: activeTab === index ? '40px' : '8px', height: '6px', background: activeTab === index ? features[activeTab].color : '#334155', borderRadius: '4px', transition: '0.4s', cursor:'pointer' }}></div>))}
-                    </div>
-                    <button className="nav-btn" onClick={() => setActiveTab((prev) => (prev + 1) % features.length)}><TbChevronRight size={24} /></button>
-                </div>
-            </div>
-            <div className="visual-side" style={{ display:'flex', justifyContent:'center', alignItems:'center' }}>
-                <AnimatePresence mode='wait'>
-                    <motion.div key={activeTab} className="visual-frame" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 1.05 }} transition={{ duration: 0.6, ease: "circOut" }} style={{ background: features[activeTab].bgPattern, boxShadow: `0 30px 60px -20px ${features[activeTab].color}30` }}>
-                        {(() => {
-                          const ActiveIcon = features[activeTab].icon;
-                          return (
-                            <>
-                        <div className="dots-grid">{[...Array(400)].map((_, i) => (<div key={i} className="dot" style={{backgroundColor: features[activeTab].color}}></div>))}</div>
-                        <motion.div className="icon-showcase" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
-                            <div className="icon-core" style={{ color: features[activeTab].color }}>
-                                <ActiveIcon size={88} />
-                            </div>
-                            <div className="icon-tags" style={{ color: features[activeTab].color }}>
-                                {features[activeTab].tags.map((tag) => (
-                                  <span key={tag} className="icon-tag">{tag}</span>
-                                ))}
-                            </div>
-                        </motion.div>
-                            </>
-                          );
-                        })()}
-                    </motion.div>
-                </AnimatePresence>
-            </div>
-        </div>
-      </section>
 
-            <footer className="site-footer">2026 Soyline Teknoloji tüm hakları saklıdır.</footer>
+      {/* FOOTER */}
+      <footer className="site-footer">
+          <div className="footer-inner">
+              <div className="footer-brand">
+                  <span style={{color:'#fff'}}>Soy</span><span style={{color:'var(--gold)'}}>Line</span>
+              </div>
+              <p className="footer-copy">&copy; 2026 SoyLine Teknoloji A.Ş. &mdash; Tüm hakları saklıdır.</p>
+          </div>
+      </footer>
     </>
   );
 }
