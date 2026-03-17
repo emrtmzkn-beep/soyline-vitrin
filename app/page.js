@@ -125,7 +125,6 @@ export default function Home() {
   const [horseCount, setHorseCount] = useState(0);
   const [btCount, setBtCount] = useState(0);
   const [analysisCount, setAnalysisCount] = useState(0);
-  const [viewCount, setViewCount] = useState(0);
   const [statsVisible, setStatsVisible] = useState(false);
   const statsRef = useRef(null);
 
@@ -152,22 +151,20 @@ export default function Home() {
   const animatedHorse = useCountUp(horseCount, 2200, statsVisible);
   const animatedBt = useCountUp(btCount, 2200, statsVisible);
   const animatedAnalysis = useCountUp(analysisCount, 2200, statsVisible);
-  const animatedViews = useCountUp(viewCount, 2200, statsVisible);
 
   // --- SAYAÇ VERİLERİNİ ÇEK ---
   useEffect(() => {
     (async () => {
       const [horsesRes, btRes, analysisReportsRes, stallionLogRes, viewsRes] = await Promise.all([
-        supabase.from('tum_atlar').select('id', { count: 'exact', head: true }),
-        supabase.from('gruplisted').select('id', { count: 'exact', head: true }),
-        supabase.from('analysis_reports').select('id', { count: 'exact', head: true }),
-        supabase.from('stallion_activity_log').select('id', { count: 'exact', head: true }),
-        supabase.from('pedigree_views').select('id', { count: 'exact', head: true }),
+        supabase.from('tum_atlar').select('*', { count: 'exact', head: true }),
+        supabase.from('gruplisted').select('*', { count: 'exact', head: true }),
+        supabase.from('analysis_reports').select('*', { count: 'exact', head: true }),
+        supabase.from('stallion_activity_log').select('*', { count: 'exact', head: true }),
+        supabase.from('pedigree_views').select('*', { count: 'exact', head: true }),
       ]);
       setHorseCount(horsesRes.count || 0);
       setBtCount(btRes.count || 0);
-      setAnalysisCount((analysisReportsRes.count || 0) + (stallionLogRes.count || 0));
-      setViewCount(viewsRes.count || 0);
+      setAnalysisCount((analysisReportsRes.count || 0) + (stallionLogRes.count || 0) + (viewsRes.count || 0));
     })();
   }, []);
 
@@ -795,11 +792,6 @@ export default function Home() {
                   <div className="stat-icon" style={{ background: 'rgba(99,102,241,0.12)', color: '#6366f1' }}><TbChartBar size={24} /></div>
                   <span className="stat-number">{animatedAnalysis.toLocaleString('tr-TR')}</span>
                   <span className="stat-label">Analiz</span>
-              </div>
-              <div className="stat-card">
-                  <div className="stat-icon" style={{ background: 'rgba(236,72,153,0.12)', color: '#ec4899' }}><TbEye size={24} /></div>
-                  <span className="stat-number">{animatedViews.toLocaleString('tr-TR')}</span>
-                  <span className="stat-label">Pedigri Görüntülenme</span>
               </div>
           </motion.div>
       </div>
