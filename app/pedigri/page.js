@@ -235,6 +235,9 @@ function PedigreeResultPageContent() {
 
             setRacesCount(racesRes?.data?.length || 0);
             setLoading(false);
+
+            // Log pedigree view
+            supabase.from('pedigree_views').insert({ page_type: 'pedigri', horse_id: String(id) }).then(() => {});
         })();
     }, [id, genParam]);
 

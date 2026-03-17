@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation'; 
 import { createClient } from '@supabase/supabase-js'; 
 import { motion, AnimatePresence } from 'framer-motion'; 
-import { TbArrowRight, TbSearch, TbHorseToy, TbGenderMale, TbGenderFemale, TbDna, TbHorse, TbTrophy, TbChartBar } from 'react-icons/tb';
+import { TbArrowRight, TbSearch, TbHorseToy, TbGenderMale, TbGenderFemale, TbDna, TbHorse, TbTrophy, TbChartBar, TbEye } from 'react-icons/tb';
 import { HiOutlineSparkles, HiOutlinePresentationChartLine, HiOutlineShoppingBag, HiOutlineMap, HiOutlineCamera, HiOutlineFingerPrint, HiOutlineClock, HiOutlineHeart, HiOutlineBriefcase, HiOutlineMicrophone } from 'react-icons/hi2';
 
 // --- SUPABASE BAĞLANTISI ---
@@ -125,6 +125,7 @@ export default function Home() {
   const [horseCount, setHorseCount] = useState(0);
   const [btCount, setBtCount] = useState(0);
   const [analysisCount, setAnalysisCount] = useState(0);
+  const [viewCount, setViewCount] = useState(0);
   const [statsVisible, setStatsVisible] = useState(false);
   const statsRef = useRef(null);
 
@@ -151,18 +152,22 @@ export default function Home() {
   const animatedHorse = useCountUp(horseCount, 2200, statsVisible);
   const animatedBt = useCountUp(btCount, 2200, statsVisible);
   const animatedAnalysis = useCountUp(analysisCount, 2200, statsVisible);
+  const animatedViews = useCountUp(viewCount, 2200, statsVisible);
 
   // --- SAYAÇ VERİLERİNİ ÇEK ---
   useEffect(() => {
     (async () => {
-      const [horsesRes, btRes, analysisRes] = await Promise.all([
+      const [horsesRes, btRes, analysisReportsRes, stallionLogRes, viewsRes] = await Promise.all([
         supabase.from('tum_atlar').select('id', { count: 'exact', head: true }),
         supabase.from('gruplisted').select('id', { count: 'exact', head: true }),
-        supabase.from('stallion_log_activity').select('id', { count: 'exact', head: true }),
+        supabase.from('analysis_reports').select('id', { count: 'exact', head: true }),
+        supabase.from('stallion_activity_log').select('id', { count: 'exact', head: true }),
+        supabase.from('pedigree_views').select('id', { count: 'exact', head: true }),
       ]);
       setHorseCount(horsesRes.count || 0);
       setBtCount(btRes.count || 0);
-      setAnalysisCount(analysisRes.count || 0);
+      setAnalysisCount((analysisReportsRes.count || 0) + (stallionLogRes.count || 0));
+      setViewCount(viewsRes.count || 0);
     })();
   }, []);
 
@@ -445,21 +450,25 @@ export default function Home() {
         }
 
         /* SAYAÇ BÖLÜMÜ */
+        .stats-wrapper {
+            position: relative;
+            z-index: 10;
+            margin-top: -60px;
+            padding: 0 20px 50px;
+        }
         .stats-section {
             display: flex;
             justify-content: center;
-            gap: 24px;
-            margin-top: 36px;
+            gap: 20px;
             flex-wrap: wrap;
             width: 100%;
-            max-width: 820px;
-            margin-left: auto;
-            margin-right: auto;
+            max-width: 1000px;
+            margin: 0 auto;
         }
         .stat-card {
             flex: 1;
-            min-width: 200px;
-            max-width: 260px;
+            min-width: 180px;
+            max-width: 230px;
             background: rgba(15, 23, 42, 0.6);
             backdrop-filter: blur(16px);
             border: 1px solid rgba(254, 220, 0, 0.15);
@@ -515,17 +524,17 @@ export default function Home() {
             text-transform: uppercase;
             letter-spacing: 1.5px;
         }
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             .stats-section { gap: 14px; }
-            .stat-card { min-width: 150px; padding: 22px 16px 20px; }
-            .stat-number { font-size: 1.8rem; }
+            .stat-card { min-width: 140px; padding: 22px 14px 20px; }
+            .stat-number { font-size: 1.7rem; }
             .stat-icon { width: 40px; height: 40px; }
         }
-        @media (max-width: 480px) {
-            .stats-section { gap: 10px; flex-direction: column; align-items: center; }
-            .stat-card { min-width: 260px; max-width: 300px; }
-            .stat-number { font-size: 2rem; }
-            .stat-label { font-size: 0.72rem; }
+        @media (max-width: 600px) {
+            .stats-section { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+            .stat-card { min-width: 0; max-width: none; }
+            .stat-number { font-size: 1.6rem; }
+            .stat-label { font-size: 0.68rem; letter-spacing: 1px; }
         }
 
         @media (max-width: 1100px) {
@@ -549,7 +558,7 @@ export default function Home() {
         .pedigree-search-section {
             position: relative; 
             z-index: 50;
-            margin-top: -80px; 
+            margin-top: 0; 
             padding-bottom: 80px;
             display: flex; 
             flex-direction: column; 
@@ -766,7 +775,12 @@ export default function Home() {
               Hepsi tek platformda, <span style={{color:'var(--gold)', fontWeight:700}}>SoyLine</span> ile.
           </motion.p>
 
-          <motion.div ref={statsRef} className="stats-section" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.9 }}>
+        </div>
+      </header>
+
+      {/* --- SAYAÇ KARTLARI --- */}
+      <div className="stats-wrapper">
+          <motion.div ref={statsRef} className="stats-section" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
               <div className="stat-card">
                   <div className="stat-icon" style={{ background: 'rgba(16,185,129,0.12)', color: '#10b981' }}><TbHorse size={24} /></div>
                   <span className="stat-number">{animatedHorse.toLocaleString('tr-TR')}</span>
@@ -782,9 +796,13 @@ export default function Home() {
                   <span className="stat-number">{animatedAnalysis.toLocaleString('tr-TR')}</span>
                   <span className="stat-label">Analiz</span>
               </div>
+              <div className="stat-card">
+                  <div className="stat-icon" style={{ background: 'rgba(236,72,153,0.12)', color: '#ec4899' }}><TbEye size={24} /></div>
+                  <span className="stat-number">{animatedViews.toLocaleString('tr-TR')}</span>
+                  <span className="stat-label">Pedigri Görüntülenme</span>
+              </div>
           </motion.div>
-        </div>
-      </header>
+      </div>
 
       {/* --- PEDİGRİ ARAMA BÖLÜMÜ --- */}
       <section className="pedigree-search-section">

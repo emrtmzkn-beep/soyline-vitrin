@@ -126,6 +126,9 @@ function PotentialPedigreePageContent() {
             const map = generateColorMap(virtualFoal);
             setColorMap(map);
             setLoading(false);
+
+            // Log pedigree view
+            supabase.from('pedigree_views').insert({ page_type: 'muhtemel', horse_id: `${sireIdParam}_${damIdParam}` }).then(() => {});
         });
     }, [sireIdParam, damIdParam, genParam]);
 
