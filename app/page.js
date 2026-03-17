@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation'; 
 import { createClient } from '@supabase/supabase-js'; 
 import { motion, AnimatePresence } from 'framer-motion'; 
-import { TbArrowRight, TbSearch, TbHorseToy, TbGenderMale, TbGenderFemale, TbDna } from 'react-icons/tb';
+import { TbArrowRight, TbSearch, TbHorseToy, TbGenderMale, TbGenderFemale, TbDna, TbHorse, TbTrophy, TbChartBar } from 'react-icons/tb';
 import { HiOutlineSparkles, HiOutlinePresentationChartLine, HiOutlineShoppingBag, HiOutlineMap, HiOutlineCamera, HiOutlineFingerPrint, HiOutlineClock, HiOutlineHeart, HiOutlineBriefcase, HiOutlineMicrophone } from 'react-icons/hi2';
 
 // --- SUPABASE BAĞLANTISI ---
@@ -125,6 +125,32 @@ export default function Home() {
   const [horseCount, setHorseCount] = useState(0);
   const [btCount, setBtCount] = useState(0);
   const [analysisCount, setAnalysisCount] = useState(0);
+  const [statsVisible, setStatsVisible] = useState(false);
+  const statsRef = useRef(null);
+
+  // Animated counter hook
+  const useCountUp = (target, duration = 2000, start = false) => {
+    const [count, setCount] = useState(0);
+    useEffect(() => {
+      if (!start || target === 0) { setCount(0); return; }
+      let startTime = null;
+      let raf;
+      const step = (timestamp) => {
+        if (!startTime) startTime = timestamp;
+        const progress = Math.min((timestamp - startTime) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        setCount(Math.floor(eased * target));
+        if (progress < 1) { raf = requestAnimationFrame(step); }
+      };
+      raf = requestAnimationFrame(step);
+      return () => cancelAnimationFrame(raf);
+    }, [target, duration, start]);
+    return count;
+  };
+
+  const animatedHorse = useCountUp(horseCount, 2200, statsVisible);
+  const animatedBt = useCountUp(btCount, 2200, statsVisible);
+  const animatedAnalysis = useCountUp(analysisCount, 2200, statsVisible);
 
   // --- SAYAÇ VERİLERİNİ ÇEK ---
   useEffect(() => {
@@ -138,6 +164,17 @@ export default function Home() {
       setBtCount(btRes.count || 0);
       setAnalysisCount(analysisRes.count || 0);
     })();
+  }, []);
+
+  // IntersectionObserver for stats section
+  useEffect(() => {
+    if (!statsRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setStatsVisible(true); observer.disconnect(); } },
+      { threshold: 0.3 }
+    );
+    observer.observe(statsRef.current);
+    return () => observer.disconnect();
   }, []);
 
   // --- 1. GENEL AT ARAMA (tum_atlar) ---
@@ -411,38 +448,84 @@ export default function Home() {
         .stats-section {
             display: flex;
             justify-content: center;
-            gap: 40px;
-            margin-top: 28px;
+            gap: 24px;
+            margin-top: 36px;
             flex-wrap: wrap;
+            width: 100%;
+            max-width: 820px;
+            margin-left: auto;
+            margin-right: auto;
         }
         .stat-card {
+            flex: 1;
+            min-width: 200px;
+            max-width: 260px;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(254, 220, 0, 0.15);
+            border-radius: 20px;
+            padding: 28px 20px 24px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
-            min-width: 140px;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(.4,0,.2,1);
+        }
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+        .stat-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(254, 220, 0, 0.4);
+            box-shadow: 0 12px 35px rgba(254, 220, 0, 0.1);
+        }
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 4px;
         }
         .stat-number {
             font-family: 'Poppins', sans-serif;
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             font-weight: 800;
             background: linear-gradient(135deg, var(--gold), #fff7a0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1.1;
+            letter-spacing: -0.5px;
         }
         .stat-label {
             font-size: 0.78rem;
-            color: #64748b;
+            color: #94a3b8;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+        }
+        @media (max-width: 768px) {
+            .stats-section { gap: 14px; }
+            .stat-card { min-width: 150px; padding: 22px 16px 20px; }
+            .stat-number { font-size: 1.8rem; }
+            .stat-icon { width: 40px; height: 40px; }
         }
         @media (max-width: 480px) {
-            .stats-section { gap: 20px; }
-            .stat-number { font-size: 1.6rem; }
-            .stat-card { min-width: 100px; }
-            .stat-label { font-size: 0.68rem; }
+            .stats-section { gap: 10px; flex-direction: column; align-items: center; }
+            .stat-card { min-width: 260px; max-width: 300px; }
+            .stat-number { font-size: 2rem; }
+            .stat-label { font-size: 0.72rem; }
         }
 
         @media (max-width: 1100px) {
@@ -683,17 +766,20 @@ export default function Home() {
               Hepsi tek platformda, <span style={{color:'var(--gold)', fontWeight:700}}>SoyLine</span> ile.
           </motion.p>
 
-          <motion.div className="stats-section" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.9 }}>
+          <motion.div ref={statsRef} className="stats-section" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.9 }}>
               <div className="stat-card">
-                  <span className="stat-number">{horseCount.toLocaleString('tr-TR')}</span>
+                  <div className="stat-icon" style={{ background: 'rgba(16,185,129,0.12)', color: '#10b981' }}><TbHorse size={24} /></div>
+                  <span className="stat-number">{animatedHorse.toLocaleString('tr-TR')}</span>
                   <span className="stat-label">Kayıtlı At</span>
               </div>
               <div className="stat-card">
-                  <span className="stat-number">{btCount.toLocaleString('tr-TR')}</span>
+                  <div className="stat-icon" style={{ background: 'rgba(254,220,0,0.12)', color: '#fedc00' }}><TbTrophy size={24} /></div>
+                  <span className="stat-number">{animatedBt.toLocaleString('tr-TR')}</span>
                   <span className="stat-label">BlackType Yarış</span>
               </div>
               <div className="stat-card">
-                  <span className="stat-number">{analysisCount.toLocaleString('tr-TR')}</span>
+                  <div className="stat-icon" style={{ background: 'rgba(99,102,241,0.12)', color: '#6366f1' }}><TbChartBar size={24} /></div>
+                  <span className="stat-number">{animatedAnalysis.toLocaleString('tr-TR')}</span>
                   <span className="stat-label">Analiz</span>
               </div>
           </motion.div>
