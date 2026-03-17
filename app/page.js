@@ -121,6 +121,25 @@ export default function Home() {
   const sireRef = useRef(null);
   const damRef = useRef(null);
 
+  // --- 3. SAYAÇ STATE'LERİ ---
+  const [horseCount, setHorseCount] = useState(0);
+  const [btCount, setBtCount] = useState(0);
+  const [analysisCount, setAnalysisCount] = useState(0);
+
+  // --- SAYAÇ VERİLERİNİ ÇEK ---
+  useEffect(() => {
+    (async () => {
+      const [horsesRes, btRes, analysisRes] = await Promise.all([
+        supabase.from('tum_atlar').select('id', { count: 'exact', head: true }),
+        supabase.from('gruplisted').select('id', { count: 'exact', head: true }),
+        supabase.from('stallion_log_activity').select('id', { count: 'exact', head: true }),
+      ]);
+      setHorseCount(horsesRes.count || 0);
+      setBtCount(btRes.count || 0);
+      setAnalysisCount(analysisRes.count || 0);
+    })();
+  }, []);
+
   // --- 1. GENEL AT ARAMA (tum_atlar) ---
   useEffect(() => {
     const delayDebounce = setTimeout(async () => {
@@ -388,6 +407,44 @@ export default function Home() {
             line-height: 1.6;
         }
 
+        /* SAYAÇ BÖLÜMÜ */
+        .stats-section {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 28px;
+            flex-wrap: wrap;
+        }
+        .stat-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            min-width: 140px;
+        }
+        .stat-number {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--gold), #fff7a0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+        }
+        .stat-label {
+            font-size: 0.78rem;
+            color: #64748b;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        @media (max-width: 480px) {
+            .stats-section { gap: 20px; }
+            .stat-number { font-size: 1.6rem; }
+            .stat-card { min-width: 100px; }
+            .stat-label { font-size: 0.68rem; }
+        }
+
         @media (max-width: 1100px) {
             .hero-boxes { grid-template-columns: repeat(3, 1fr); gap: 12px; }
         }
@@ -625,6 +682,21 @@ export default function Home() {
           <motion.p className="hero-sub" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.6 }}>
               Hepsi tek platformda, <span style={{color:'var(--gold)', fontWeight:700}}>SoyLine</span> ile.
           </motion.p>
+
+          <motion.div className="stats-section" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.9 }}>
+              <div className="stat-card">
+                  <span className="stat-number">{horseCount.toLocaleString('tr-TR')}</span>
+                  <span className="stat-label">Kayıtlı At</span>
+              </div>
+              <div className="stat-card">
+                  <span className="stat-number">{btCount.toLocaleString('tr-TR')}</span>
+                  <span className="stat-label">BlackType Yarış</span>
+              </div>
+              <div className="stat-card">
+                  <span className="stat-number">{analysisCount.toLocaleString('tr-TR')}</span>
+                  <span className="stat-label">Analiz</span>
+              </div>
+          </motion.div>
         </div>
       </header>
 
