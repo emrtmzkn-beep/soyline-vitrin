@@ -152,7 +152,19 @@ export async function POST(request) {
     }
 
     // Resend ile kurumsal e-posta gönder
-    const planLabel = currentType === 'stallion_owner' ? 'Elit Kurucu Paket (Aygır Sahibi)' : 'Kurucu Paket (At Sahibi)';
+    const planLabel = currentType === 'stallion_owner' ? 'Aygır Sahibi' : 'At Sahibi';
+
+    const avantajlar = currentType === 'stallion_owner'
+      ? [
+          'Basic plan 6 ay ücretsiz',
+          'Elite plan 6 ay %50 indirim',
+          'Kalıcı "Kurucu Üye" rozeti',
+        ]
+      : [
+          'Standart üzelik: tüm kotalar 2x',
+          'Pro ve Eküri planlara 6 ay %25 indirim',
+          'Kalıcı "Kurucu Üye" rozeti',
+        ];
 
     if (resend) {
       try {
@@ -164,6 +176,7 @@ export async function POST(request) {
             ad: ad.trim(),
             kampanyaKodu,
             planLabel,
+            avantajlar,
           }),
         });
       } catch (emailErr) {
@@ -185,7 +198,7 @@ export async function POST(request) {
 }
 
 // ─── Kurumsal HTML Email Template ───────────────────────────
-function buildLaunchEmail({ ad, kampanyaKodu, planLabel }) {
+function buildLaunchEmail({ ad, kampanyaKodu, planLabel, avantajlar }) {
   return `
 <!DOCTYPE html>
 <html lang="tr">
@@ -238,18 +251,10 @@ function buildLaunchEmail({ ad, kampanyaKodu, planLabel }) {
 
               <!-- Avantajlar -->
               <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin-bottom:28px;">
+                ${avantajlar.map(a => `
                 <tr>
-                  <td style="padding:8px 0;color:#10b981;font-size:14px;">✓ <span style="color:#e2e8f0;">90 gün boyunca 2x kota artışı</span></td>
-                </tr>
-                <tr>
-                  <td style="padding:8px 0;color:#10b981;font-size:14px;">✓ <span style="color:#e2e8f0;">Pro plana %20 kurucu indirimi</span></td>
-                </tr>
-                <tr>
-                  <td style="padding:8px 0;color:#10b981;font-size:14px;">✓ <span style="color:#e2e8f0;">Kalıcı &quot;Kurucu Üye&quot; rozeti</span></td>
-                </tr>
-                <tr>
-                  <td style="padding:8px 0;color:#10b981;font-size:14px;">✓ <span style="color:#e2e8f0;">Öncelikli destek hattı</span></td>
-                </tr>
+                  <td style="padding:8px 0;color:#10b981;font-size:14px;">✓ <span style="color:#e2e8f0;">${a}</span></td>
+                </tr>`).join('')}
               </table>
 
               <!-- CTA Button -->
