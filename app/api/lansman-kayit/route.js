@@ -186,7 +186,7 @@ export async function POST(request) {
 
     return NextResponse.json({
       success: true,
-      message: 'Başvurunuz alındı! Kurucu üye kodunuz e-posta adresinize gönderildi.',
+      message: 'Başvurunuz alındı! Kurucu üye kodunuz e-posta adresinize gönderildi. Platform açıldığında bu kodla kaydolabilirsiniz.',
     });
 
   } catch {
@@ -228,7 +228,7 @@ function buildLaunchEmail({ ad, kampanyaKodu, planLabel, avantajlar }) {
             <td style="padding:40px;">
               <h1 style="color:#ffffff;font-size:22px;margin:0 0 8px;font-weight:700;">Hoş geldiniz, ${ad}! 🎉</h1>
               <p style="color:#94a3b8;font-size:15px;line-height:1.7;margin:0 0 28px;">
-                SoyLine kurucu üye başvurunuz onaylandı. Aşağıdaki kodunuz 1 Nisan'da platform açıldığında size özel avantajlar sunar.
+                SoyLine kurucu üye başvurunuz alındı. Aşağıdaki kod size özeldir — 1 Nisan'da platform açıldığında bu kodla kaydolarak kurucu üye avantajlarınızı aktif edebilirsiniz.
               </p>
 
               <!-- Paket Bilgisi -->
@@ -246,7 +246,7 @@ function buildLaunchEmail({ ad, kampanyaKodu, planLabel, avantajlar }) {
               </div>
 
               <p style="color:#94a3b8;font-size:14px;line-height:1.7;margin:0 0 24px;">
-                Bu kod size özeldir. Platform 1 Nisan'da yayına alındığında, kayıt sırasında bu kodu kullanarak kurucu üye avantajlarınızı aktif edebilirsiniz:
+                soyline.com adresinden kaydolurken bu kodu girmeniz yeterli. Kurucu üye olarak aşağıdaki avantajlardan yararlanacaksınız:
               </p>
 
               <!-- Avantajlar -->

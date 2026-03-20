@@ -71,8 +71,8 @@ export default function LaunchSignup() {
           <div className="launch-signup-success">
             <div className="launch-signup-emoji">🎉</div>
             <h2 className="launch-signup-success-title">Başvurunuz Alındı!</h2>
-            <p className="launch-signup-success-text">Kişisel lansman kodunuz e-posta adresinize gönderilecektir.</p>
-            <p className="launch-signup-success-sub">Lansman günü hesabınız otomatik olarak hazır olacak.</p>
+            <p className="launch-signup-success-text">Kişisel kurucu üye kodunuz e-posta adresinize gönderildi.</p>
+            <p className="launch-signup-success-sub">Platform 1 Nisan'da açıldığında, bu kodla kayıt olarak kurucu üye avantajlarınızı hemen aktif edebilirsiniz.</p>
           </div>
         </motion.div>
       </section>
@@ -151,7 +151,7 @@ export default function LaunchSignup() {
           </button>
 
           <p className="launch-signup-info">
-            Başvuru sonrası kişisel lansman kodunuz e-posta adresinize otomatik olarak iletilecektir.
+            Başvuru sonrası kişisel kurucu üye kodunuz e-posta adresinize iletilecektir. Platform açıldığında bu kodla kaydolabilirsiniz.
           </p>
         </form>
       </motion.div>
