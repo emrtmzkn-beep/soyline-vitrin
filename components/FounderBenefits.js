@@ -3,18 +3,14 @@ import { motion } from 'framer-motion';
 import './FounderBenefits.css';
 
 const atSahibiList = [
-  'Tüm kotalar 90 gün boyunca 2x',
-  'Eşleşme Analizi: 10 → 20/gün',
-  'Anne Hattı: 10 → 20/gün',
-  'BarnOS: 5 → 10 at kapasitesi',
-  '200 → 500 jeton/ay',
+  'Standart üzelik: tüm kotalar 2x',
+  'Pro ve Eküri planlara 6 ay %25 indirim',
   'Kalıcı "Kurucu Üye" rozeti',
 ];
 
 const aygirSahibiList = [
-  'Basic & Elite planlarda %20 lansman indirimi',
-  'Elite\'te kalıcı Eküri at sahibi erişimi',
-  '90 gün at sahibi kota bonusu',
+  'Basic plan 6 ay ücretsiz',
+  'Elite plan 6 ay %50 indirim',
   'Kalıcı "Kurucu Üye" rozeti',
 ];
 
@@ -45,7 +41,6 @@ export default function FounderBenefits() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <div className="founder-badge founder-badge-gold">KURUCU PAKET</div>
             <h3 className="founder-card-title">At Sahibi</h3>
             <p className="founder-kontenjan">150 kişilik kontenjan</p>
             <ul className="founder-list">
@@ -66,7 +61,6 @@ export default function FounderBenefits() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="founder-badge founder-badge-silver">ELİT KURUCU PAKET</div>
             <h3 className="founder-card-title">Aygır Sahibi</h3>
             <p className="founder-kontenjan">15 kişilik kontenjan</p>
             <ul className="founder-list">

@@ -15,7 +15,7 @@ const atSahibiRows = [
   { feature: 'BarnOS At',          standart: '5',        pro: '20',         ekuri: '50',           lansmanStandart: '10 (2x)',      lansmanPro: null,                    lansmanEkuri: null },
   { feature: 'Pazar İlanı',       standart: '1/ay',     pro: '5/ay',       ekuri: '15/ay',        lansmanStandart: null,           lansmanPro: null,                    lansmanEkuri: null },
   { feature: 'Jeton/ay',           standart: '200',      pro: '1.000',      ekuri: '3.000',        lansmanStandart: '400 (2x)',     lansmanPro: null,                    lansmanEkuri: null },
-  { feature: 'Fiyat',              standart: 'Ücretsiz', pro: '1.490 ₺/ay', ekuri: '3.490 ₺/ay',   lansmanStandart: 'Ücretsiz',     lansmanPro: '6 ay %50 → 745 ₺/ay',  lansmanEkuri: '6 ay %50 → 1.745 ₺/ay', isPrice: true },
+  { feature: 'Fiyat',              standart: 'Ücretsiz', pro: '1.490 ₺/ay', ekuri: '3.490 ₺/ay',   lansmanStandart: 'Ücretsiz',     lansmanPro: '6 ay %25 → 1.118 ₺/ay',  lansmanEkuri: '6 ay %25 → 2.618 ₺/ay', isPrice: true },
 ];
 
 const aygirSahibiRows = [
@@ -114,7 +114,7 @@ export default function PlanComparison() {
               </table>
             </div>
             <div className="plans-note plans-note-gold">
-              🎁 Kurucu üye olarak başvur — Standart 2x kota bonusu, Pro ve Eküri planlara <strong>6 ay %50 indirim</strong> + kalıcı Kurucu Üye rozeti!
+              🎁 Kurucu üye olarak başvur — Standart 2x kota bonusu, Pro ve Eküri planlara <strong>6 ay %25 indirim</strong> + kalıcı Kurucu Üye rozeti!
             </div>
             <div className="plans-note plans-note-subtle">
               ⏳ Bonus süresi: 90 gün · Kurucu Üye rozeti kalıcı · Kontenjan: <strong>150 kişi</strong>
