@@ -6,6 +6,10 @@ import { createClient } from '@supabase/supabase-js';
 import { motion, AnimatePresence } from 'framer-motion'; 
 import { TbArrowRight, TbSearch, TbHorseToy, TbGenderMale, TbGenderFemale, TbDna, TbHorse, TbTrophy, TbChartBar, TbEye } from 'react-icons/tb';
 import { HiOutlineSparkles, HiOutlinePresentationChartLine, HiOutlineShoppingBag, HiOutlineMap, HiOutlineCamera, HiOutlineFingerPrint, HiOutlineClock, HiOutlineHeart, HiOutlineBriefcase, HiOutlineMicrophone } from 'react-icons/hi2';
+import CountdownTimer from '../components/CountdownTimer';
+import FounderBenefits from '../components/FounderBenefits';
+import PlanComparison from '../components/PlanComparison';
+import LaunchSignup from '../components/LaunchSignup';
 
 // --- SUPABASE BAĞLANTISI ---
 const supabase = createClient(
@@ -117,7 +121,7 @@ export default function Home() {
   const [selectedSire, setSelectedSire] = useState(null);
   const [selectedDam, setSelectedDam] = useState(null);
   const [foalGen, setFoalGen] = useState(5);
-  
+
   const sireRef = useRef(null);
   const damRef = useRef(null);
 
@@ -343,45 +347,77 @@ export default function Home() {
                     0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 8px rgba(254, 220, 0, 0.8); }
                     50% { opacity: 0.5; transform: scale(0.7); box-shadow: 0 0 20px rgba(254, 220, 0, 1); }
                 }
-                .coming-soon-banner {
+                /* GLASSMORPHISM LAUNCH BANNER */
+                .launch-glass-banner {
+                    position: relative;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    gap: 12px;
-                    margin-bottom: 36px;
-                    margin-top: -20px;
-                }
-                .coming-soon-chip {
-                    display: inline-flex;
-                    align-items: center;
                     gap: 10px;
-                    background: rgba(254, 220, 0, 0.08);
-                    border: 2px solid rgba(254, 220, 0, 0.5);
-                    color: var(--gold);
-                    padding: 14px 28px;
-                    border-radius: 999px;
+                    margin-bottom: 32px;
+                    margin-top: -10px;
+                    padding: 28px 40px;
+                    background: rgba(254, 220, 0, 0.06);
+                    backdrop-filter: blur(20px);
+                    -webkit-backdrop-filter: blur(20px);
+                    border: 1px solid rgba(254, 220, 0, 0.25);
+                    border-radius: 24px;
+                    max-width: 620px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    overflow: hidden;
+                    animation: bannerGlow 3s ease-in-out infinite;
+                }
+                .launch-glass-banner::before {
+                    content: '';
+                    position: absolute;
+                    top: -50%;
+                    left: -50%;
+                    width: 200%;
+                    height: 200%;
+                    background: radial-gradient(circle at 30% 40%, rgba(254, 220, 0, 0.12) 0%, transparent 60%),
+                                radial-gradient(circle at 70% 60%, rgba(254, 220, 0, 0.08) 0%, transparent 50%);
+                    animation: orbMove 6s ease-in-out infinite;
+                    pointer-events: none;
+                }
+                @keyframes bannerGlow {
+                    0%, 100% { box-shadow: 0 0 30px rgba(254, 220, 0, 0.08), 0 4px 30px rgba(0,0,0,0.3); border-color: rgba(254, 220, 0, 0.25); }
+                    50% { box-shadow: 0 0 50px rgba(254, 220, 0, 0.18), 0 4px 40px rgba(0,0,0,0.3); border-color: rgba(254, 220, 0, 0.5); }
+                }
+                @keyframes orbMove {
+                    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+                    50% { transform: translate(10px, -10px) rotate(5deg); }
+                }
+                .launch-glass-date {
+                    font-family: 'Playfair Display', serif;
+                    font-size: 2rem;
                     font-weight: 700;
-                    font-size: 1rem;
-                    letter-spacing: 2px;
-                    text-transform: uppercase;
-                    animation: pulseGlow 2.5s ease-in-out infinite;
-                }
-                .chip-dot {
-                    width: 10px;
-                    height: 10px;
-                    border-radius: 50%;
-                    background: var(--gold);
-                    animation: dotPulse 1.5s ease-in-out infinite;
-                }
-                .coming-soon-sub {
-                    color: #94a3b8;
-                    font-size: 1.05rem;
+                    color: #fff;
                     letter-spacing: 0.5px;
-                    font-weight: 500;
+                    position: relative;
+                    z-index: 1;
                 }
-                .coming-soon-sub span {
+                .launch-glass-date span {
+                    background: linear-gradient(90deg, #fedc00, #fff7a0, #fedc00);
+                    background-size: 200% 100%;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    animation: logoShimmer 3s ease-in-out infinite;
+                }
+                .launch-glass-sub {
+                    color: #94a3b8;
+                    font-size: 1rem;
+                    font-weight: 500;
+                    letter-spacing: 0.3px;
+                    position: relative;
+                    z-index: 1;
+                }
+                .launch-glass-sub strong {
                     color: var(--gold);
-                    font-weight: 700;
+                }
+                @media (max-width: 640px) {
+                    .launch-glass-banner { padding: 20px 20px; margin-bottom: 24px; }
+                    .launch-glass-date { font-size: 1.5rem; }
                 }
 
         /* HERO FEATURE BOXES */
@@ -746,14 +782,14 @@ export default function Home() {
         </video>
         <div className="hero-content">
           <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: "easeOut" }}>
-                        <div className="coming-soon-banner">
-                            <div className="coming-soon-chip">
-                                <span className="chip-dot"></span>
-                                Çok Yakında
-                            </div>
-                            <p className="coming-soon-sub">Türk atçılığının hizmetinde, <span>yepyeni bir deneyim</span> başlıyor.</p>
+                        <div className="launch-glass-banner">
+                            <div className="launch-glass-date"><span>1 Nisan</span>'da Yayına Başlıyoruz</div>
+                            <p className="launch-glass-sub">Türk atçılığının hizmetinde <strong>yepyeni bir deneyim</strong></p>
                         </div>
           </motion.div>
+
+          {/* GERİ SAYIM */}
+          <CountdownTimer />
 
           <motion.div className="hero-boxes" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }}>
               {heroCards.map((card, i) => {
@@ -774,6 +810,15 @@ export default function Home() {
 
         </div>
       </header>
+
+      {/* --- KURUCU ÜYE AVANTAJLARI --- */}
+      <FounderBenefits />
+
+      {/* --- PLAN KARŞILAŞTIRMA --- */}
+      <PlanComparison />
+
+      {/* --- LANSMAN BAŞVURU --- */}
+      <LaunchSignup />
 
       {/* --- SAYAÇ KARTLARI --- */}
       <div className="stats-wrapper">
@@ -902,6 +947,7 @@ export default function Home() {
               <p className="footer-copy">&copy; 2026 SoyLine Teknoloji A.Ş. &mdash; Tüm hakları saklıdır.</p>
           </div>
       </footer>
+
     </>
   );
 }

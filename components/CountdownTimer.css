@@ -1,0 +1,118 @@
+.countdown-section {
+  position: relative;
+  z-index: 10;
+  padding: 20px 20px 30px;
+  display: flex;
+  justify-content: center;
+  background: transparent;
+}
+
+.countdown-inner {
+  text-align: center;
+  max-width: 900px;
+  width: 100%;
+}
+
+.countdown-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: #fedc00;
+  margin: 0 0 20px;
+  letter-spacing: 0.5px;
+}
+
+.countdown-boxes {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.countdown-box {
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(254, 220, 0, 0.3);
+  border-radius: 16px;
+  padding: 24px 28px;
+  min-width: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.countdown-box:hover {
+  border-color: rgba(254, 220, 0, 0.7);
+  box-shadow: 0 8px 30px rgba(254, 220, 0, 0.15);
+  transform: translateY(-4px);
+}
+
+.countdown-number {
+  font-family: 'Poppins', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #fedc00, #fff7a0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.countdown-label {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.countdown-sub {
+  margin-top: 28px;
+  color: #94a3b8;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.countdown-launched {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  color: #fedc00;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+/* Divider removed — countdown is inside hero */
+
+@media (min-width: 768px) {
+  .countdown-number {
+    font-size: 5rem;
+  }
+  .countdown-box {
+    min-width: 140px;
+    padding: 32px 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .countdown-title {
+    font-size: 1.6rem;
+  }
+  .countdown-boxes {
+    gap: 10px;
+  }
+  .countdown-box {
+    min-width: 70px;
+    padding: 16px 14px;
+  }
+  .countdown-number {
+    font-size: 2.2rem;
+  }
+  .countdown-label {
+    font-size: 0.62rem;
+    letter-spacing: 1px;
+  }
+  .countdown-sub {
+    font-size: 0.88rem;
+  }
+}

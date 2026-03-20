@@ -1,0 +1,218 @@
+.launch-signup-section {
+  position: relative;
+  z-index: 10;
+  padding: 80px 20px;
+  background: #020617;
+}
+
+.launch-signup-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #fedc00, transparent);
+}
+
+.launch-signup-inner {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.launch-signup-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  color: #fedc00;
+  margin: 0 0 12px;
+  text-align: center;
+}
+
+.launch-signup-subtitle {
+  color: #94a3b8;
+  font-size: 1rem;
+  margin: 0 0 32px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.launch-signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(254, 220, 0, 0.2);
+  border-radius: 20px;
+  padding: 32px 28px;
+}
+
+/* User type selector */
+.launch-signup-type-selector {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.launch-type-btn {
+  padding: 14px 12px;
+  background: #1e293b;
+  border: 2px solid #334155;
+  border-radius: 12px;
+  color: #94a3b8;
+  font-weight: 600;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.launch-type-btn:hover {
+  border-color: #64748b;
+  color: #e2e8f0;
+}
+
+.launch-type-active {
+  border-color: #fedc00 !important;
+  color: #fedc00 !important;
+  background: rgba(254, 220, 0, 0.08);
+  box-shadow: 0 0 12px rgba(254, 220, 0, 0.1);
+}
+
+.launch-type-active-silver {
+  border-color: #94a3b8 !important;
+  color: #e2e8f0 !important;
+  background: rgba(148, 163, 184, 0.08);
+  box-shadow: 0 0 12px rgba(148, 163, 184, 0.1);
+}
+
+.launch-signup-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.launch-signup-label {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  letter-spacing: 0.3px;
+}
+
+.launch-signup-optional {
+  color: #475569;
+  font-weight: 400;
+}
+
+.launch-signup-input {
+  background: #1e293b;
+  border: 1px solid #334155;
+  color: #fff;
+  padding: 14px 16px;
+  border-radius: 10px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  font-family: 'Poppins', sans-serif;
+}
+
+.launch-signup-input:focus {
+  border-color: #fedc00;
+  box-shadow: 0 0 0 3px rgba(254, 220, 0, 0.1);
+}
+
+.launch-signup-input::placeholder {
+  color: #475569;
+}
+
+.launch-signup-error {
+  color: #ef4444;
+  font-size: 0.86rem;
+  font-weight: 600;
+  margin: 0;
+  padding: 10px 14px;
+  background: rgba(239, 68, 68, 0.08);
+  border-radius: 8px;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.launch-signup-submit {
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1.02rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #fedc00, #b45309);
+  color: #000;
+  letter-spacing: 0.3px;
+  font-family: 'Poppins', sans-serif;
+  margin-top: 4px;
+}
+
+.launch-signup-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(254, 220, 0, 0.3);
+}
+
+.launch-signup-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.launch-signup-info {
+  text-align: center;
+  color: #475569;
+  font-size: 0.78rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Success */
+.launch-signup-success {
+  text-align: center;
+  padding: 60px 28px;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 20px;
+}
+
+.launch-signup-emoji {
+  font-size: 4rem;
+  margin-bottom: 16px;
+}
+
+.launch-signup-success-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: #10b981;
+  margin: 0 0 12px;
+}
+
+.launch-signup-success-text {
+  color: #fedc00;
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+
+.launch-signup-success-sub {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .launch-signup-title { font-size: 1.8rem; }
+  .launch-signup-form { padding: 24px 20px; }
+}
+
+@media (max-width: 480px) {
+  .launch-signup-section { padding: 60px 16px; }
+  .launch-signup-title { font-size: 1.5rem; }
+  .launch-signup-form { padding: 20px 16px; }
+  .launch-type-btn { font-size: 0.82rem; padding: 12px 10px; }
+}

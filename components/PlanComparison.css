@@ -1,0 +1,249 @@
+.plans-section {
+  position: relative;
+  z-index: 10;
+  padding: 80px 20px;
+  background: #020617;
+}
+
+.plans-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #fedc00, transparent);
+}
+
+.plans-inner {
+  max-width: 1050px;
+  margin: 0 auto;
+}
+
+.plans-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  color: #fedc00;
+  margin: 0 0 32px;
+  text-align: center;
+}
+
+.plans-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 32px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.08);
+}
+
+.plans-tab {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 14px 32px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.plans-tab:hover {
+  color: #cbd5e1;
+}
+
+.plans-tab-active {
+  color: #fedc00;
+  border-bottom-color: #fedc00;
+}
+
+.plans-table-wrapper {
+  overflow-x: auto;
+  border-radius: 16px;
+  border: 1px solid rgba(254, 220, 0, 0.15);
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(16px);
+}
+
+.plans-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 650px;
+}
+
+/* Header rows */
+.plans-header-group th {
+  padding: 14px 16px;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.plans-feature-th {
+  text-align: left !important;
+  color: #94a3b8;
+}
+
+.plans-normal-header {
+  color: #94a3b8;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.plans-lansman-header {
+  color: #fedc00;
+  background: rgba(254, 220, 0, 0.08);
+  border-left: 2px solid rgba(254, 220, 0, 0.3);
+}
+
+.plans-header-sub th {
+  padding: 10px 16px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #64748b;
+  text-align: center;
+  border-bottom: 1px solid rgba(254, 220, 0, 0.15);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.plans-lansman-subheader {
+  color: #fedc00 !important;
+  background: rgba(254, 220, 0, 0.05);
+  border-left: 2px solid rgba(254, 220, 0, 0.3);
+}
+
+.plans-lansman-subheader:first-of-type {
+  border-left: 2px solid rgba(254, 220, 0, 0.3);
+}
+
+/* Body cells */
+.plans-table tbody td {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  color: #cbd5e1;
+  font-size: 0.88rem;
+  text-align: center;
+}
+
+.plans-table tbody td:first-child {
+  text-align: left;
+}
+
+.plans-feature {
+  font-weight: 600;
+  color: #e2e8f0;
+  white-space: nowrap;
+}
+
+/* Lansman cells */
+.plans-lansman-cell {
+  border-left: 2px solid rgba(254, 220, 0, 0.15);
+  background: rgba(254, 220, 0, 0.02);
+  color: #475569;
+}
+
+.plans-lansman-active {
+  color: #10b981 !important;
+  font-weight: 700;
+  background: rgba(16, 185, 129, 0.06) !important;
+}
+
+/* Price row */
+.plans-price-row td {
+  font-weight: 800;
+  font-size: 0.92rem;
+  color: #fedc00;
+  border-bottom: none;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  border-top: 1px solid rgba(254, 220, 0, 0.15);
+}
+
+.plans-price-row .plans-lansman-active {
+  color: #10b981 !important;
+}
+
+/* Note boxes */
+.plans-note {
+  margin-top: 16px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.plans-note-gold {
+  background: rgba(254, 220, 0, 0.08);
+  border: 1px solid rgba(254, 220, 0, 0.25);
+  color: #fedc00;
+}
+
+.plans-note-subtle {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+  margin-top: 8px;
+}
+
+/* CTA button */
+.plans-cta {
+  display: block;
+  margin: 24px auto 0;
+  padding: 16px 40px;
+  background: linear-gradient(135deg, #fedc00, #b45309);
+  color: #000;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.3px;
+}
+
+.plans-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(254, 220, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  .plans-title {
+    font-size: 1.8rem;
+  }
+  .plans-tab {
+    padding: 12px 20px;
+    font-size: 0.9rem;
+  }
+  .plans-table {
+    min-width: 580px;
+  }
+}
+
+@media (max-width: 480px) {
+  .plans-section {
+    padding: 60px 12px;
+  }
+  .plans-title {
+    font-size: 1.5rem;
+  }
+  .plans-tab {
+    padding: 10px 16px;
+    font-size: 0.82rem;
+  }
+  .plans-note {
+    font-size: 0.8rem;
+    padding: 12px 14px;
+  }
+  .plans-cta {
+    width: 100%;
+    padding: 14px 20px;
+  }
+}
