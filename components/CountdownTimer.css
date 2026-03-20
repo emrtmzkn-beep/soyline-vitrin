@@ -74,6 +74,25 @@
   font-weight: 500;
 }
 
+.countdown-cta {
+  margin-top: 28px;
+  padding: 14px 36px;
+  background: linear-gradient(135deg, #fedc00, #b45309);
+  color: #000;
+  border: none;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.3px;
+}
+.countdown-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(254, 220, 0, 0.3);
+}
+
 .countdown-launched {
   font-family: 'Playfair Display', serif;
   font-size: 3rem;

@@ -67,7 +67,7 @@ export default function CountdownTimer() {
             </div>
           ))}
         </div>
-        <p className="countdown-sub">İlk 165 kişiye özel kurucu üye avantajları</p>
+        <button className="countdown-cta" onClick={() => { const el = document.getElementById('lansman-basvuru'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }}>Kurucu Üye Başvurusu ↓</button>
       </motion.div>
     </section>
   );

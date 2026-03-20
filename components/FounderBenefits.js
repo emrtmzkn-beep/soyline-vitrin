@@ -34,7 +34,7 @@ export default function FounderBenefits() {
         className="founder-inner"
       >
         <h2 className="founder-title">Kurucu Üye Avantajları</h2>
-        <p className="founder-subtitle">Sınırlı kontenjan — toplam 280 kişi</p>
+        <p className="founder-subtitle">Sınırlı kontenjan ile sadece erken başvuru yapanlara özel fırsatlar</p>
 
         <div className="founder-cards">
           {/* AT SAHİBİ KARTI */}

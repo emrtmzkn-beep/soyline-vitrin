@@ -791,19 +791,6 @@ export default function Home() {
           {/* GERİ SAYIM */}
           <CountdownTimer />
 
-          <motion.div className="hero-boxes" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }}>
-              {heroCards.map((card, i) => {
-                  const Icon = card.icon;
-                  return (
-                      <div key={i} className="hero-box" style={{ '--box-color': card.color, '--box-glow': `${card.color}22` }}>
-                          <div className="hero-box-icon"><Icon size={24} /></div>
-                          <h3>{card.title}</h3>
-                          <p>{card.desc}</p>
-                      </div>
-                  );
-              })}
-          </motion.div>
-
           <motion.p className="hero-sub" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.6 }}>
               Hepsi tek platformda, <span style={{color:'var(--gold)', fontWeight:700}}>SoyLine</span> ile.
           </motion.p>
@@ -813,6 +800,22 @@ export default function Home() {
 
       {/* --- KURUCU ÜYE AVANTAJLARI --- */}
       <FounderBenefits />
+
+      {/* --- ÖZELLİK KUTULARI --- */}
+      <section style={{ background: '#020617', padding: '60px 20px 40px', display: 'flex', justifyContent: 'center' }}>
+        <motion.div className="hero-boxes" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
+            {heroCards.map((card, i) => {
+                const Icon = card.icon;
+                return (
+                    <div key={i} className="hero-box" style={{ '--box-color': card.color, '--box-glow': `${card.color}22` }}>
+                        <div className="hero-box-icon"><Icon size={24} /></div>
+                        <h3>{card.title}</h3>
+                        <p>{card.desc}</p>
+                    </div>
+                );
+            })}
+        </motion.div>
+      </section>
 
       {/* --- PLAN KARŞILAŞTIRMA --- */}
       <PlanComparison />
