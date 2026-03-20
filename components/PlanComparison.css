@@ -17,7 +17,7 @@
 }
 
 .plans-inner {
-  max-width: 1050px;
+  max-width: 1150px;
   margin: 0 auto;
 }
 
@@ -72,6 +72,10 @@
   width: 100%;
   border-collapse: collapse;
   min-width: 650px;
+}
+
+.plans-table-7col {
+  min-width: 920px;
 }
 
 /* Header rows */
@@ -224,6 +228,9 @@
   }
   .plans-table {
     min-width: 580px;
+  }
+  .plans-table-7col {
+    min-width: 800px;
   }
 }
 
