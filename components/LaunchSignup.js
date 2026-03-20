@@ -6,7 +6,8 @@ import './LaunchSignup.css';
 const STORAGE_KEY = 'soyline_launch_registered';
 
 export default function LaunchSignup() {
-  const [name, setName] = useState('');
+  const [ad, setAd] = useState('');
+  const [soyad, setSoyad] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [userType, setUserType] = useState('horse_owner');
@@ -20,7 +21,7 @@ export default function LaunchSignup() {
     } catch { /* noop */ }
   }, []);
 
-  const isFormValid = name.trim() && email.trim() && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const isFormValid = ad.trim() && soyad.trim() && email.trim() && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,8 +34,8 @@ export default function LaunchSignup() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          ad: name.trim().split(' ')[0] || name.trim(),
-          soyad: name.trim().split(' ').slice(1).join(' ') || '-',
+          ad: ad.trim(),
+          soyad: soyad.trim(),
           email: email.trim().toLowerCase(),
           telefon: phone.trim() || '05000000000',
           kvkk_onay: true,
@@ -109,16 +110,29 @@ export default function LaunchSignup() {
             </button>
           </div>
 
-          <div className="launch-signup-field">
-            <label className="launch-signup-label">Ad Soyad</label>
-            <input
-              type="text"
-              className="launch-signup-input"
-              value={name}
-              onChange={(e) => { setName(e.target.value); setError(''); }}
-              placeholder="Adınız Soyadınız"
-              required
-            />
+          <div className="launch-signup-row">
+            <div className="launch-signup-field">
+              <label className="launch-signup-label">Ad</label>
+              <input
+                type="text"
+                className="launch-signup-input"
+                value={ad}
+                onChange={(e) => { setAd(e.target.value); setError(''); }}
+                placeholder="Adınız"
+                required
+              />
+            </div>
+            <div className="launch-signup-field">
+              <label className="launch-signup-label">Soyad</label>
+              <input
+                type="text"
+                className="launch-signup-input"
+                value={soyad}
+                onChange={(e) => { setSoyad(e.target.value); setError(''); }}
+                placeholder="Soyadınız"
+                required
+              />
+            </div>
           </div>
 
           <div className="launch-signup-field">

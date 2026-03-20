@@ -87,6 +87,18 @@
   box-shadow: 0 0 12px rgba(148, 163, 184, 0.1);
 }
 
+.launch-signup-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+@media (max-width: 480px) {
+  .launch-signup-row {
+    grid-template-columns: 1fr;
+  }
+}
+
 .launch-signup-field {
   display: flex;
   flex-direction: column;
